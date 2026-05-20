@@ -7,17 +7,24 @@
 
   <style>
     body {
-      margin: 0;
-      height: 100vh;
-      background-image: url('okirakuyashouten.png');
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: sans-serif;
-      color: white;
-    }
+  margin: 0;
+  height: 100vh;
+  background-image: url('okirakuyashouten.png');
+  background-size: cover;
+  background-position: center top;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  body {
+    background-position: 60% center;
+  }
+}
 
     .box {
       background: rgba(0,0,0,0.4);
