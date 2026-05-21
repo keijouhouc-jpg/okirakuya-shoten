@@ -67,7 +67,7 @@
 </button>
   </div>
 
- <audio id="bgm" src="so op.mp3" loop></audio>
+ <audio id="bgm" src="Raim.mp3" loop></audio>
 
  <script>
   const audio = document.getElementById('bgm');
@@ -93,9 +93,11 @@
   audio.src = song;
   audio.load();
 
-  if (isPlaying) {
-    audio.play();
-  }
+  audio.play();
+
+  isPlaying = true;
+
+  button.innerText = '休憩を終える';
 }
 </script>
 
