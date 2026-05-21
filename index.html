@@ -49,8 +49,8 @@
       急がない夜です。
     </p>
 
-    <button onclick="playAudio()">
-      店の前で休む
+    <button onclick="toggleAudio()" id="musicButton">
+      休む
     </button>
   </div>
 
@@ -59,10 +59,24 @@
   </audio>
 
   <script>
-    function playAudio() {
-      document.getElementById('bgm').play();
+  const audio = document.getElementById('bgm');
+  const button = document.getElementById('musicButton');
+
+  let isPlaying = false;
+
+  function toggleAudio() {
+
+    if (isPlaying) {
+      audio.pause();
+      button.innerText = '休む';
+    } else {
+      audio.play();
+      button.innerText = '休憩を終える';
     }
-  </script>
+
+    isPlaying = !isPlaying;
+  }
+</script>
 
 </body>
 </html>
