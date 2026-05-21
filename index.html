@@ -67,9 +67,7 @@
 </button>
   </div>
 
-  <audio id="bgm" loop>
-    <source src="so op.mp3" type="audio/mpeg">
-  </audio>
+ <audio id="bgm" src="so op.mp3" loop></audio>
 
  <script>
   const audio = document.getElementById('bgm');
@@ -92,12 +90,13 @@
 
   function changeMusic(song) {
 
-    audio.src = song;
+  audio.src = song;
+  audio.load();
 
-    if (isPlaying) {
-      audio.play();
-    }
+  if (isPlaying) {
+    audio.play();
   }
+}
 </script>
 
 </body>
