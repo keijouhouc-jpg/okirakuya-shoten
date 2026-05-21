@@ -54,51 +54,45 @@
     </button>
     <br><br>
 
-<button onclick="changeMusic('unn.mp3')">
+<button onclick="playMusic('unn.mp3')">
   今月の曲
 </button>
 
-<button onclick="changeMusic('te.mp3')">
+<button onclick="playMusic('te.mp3')">
   テーマ曲
 </button>
 
-<button onclick="changeMusic('end.mp3')">
-  エンディング曲
+<button onclick="playMusic('end.mp3')">
+  エンディング
+</button>
+
+<br><br>
+
+<button onclick="stopMusic()">
+  音を止める
 </button>
   </div>
 
- <audio id="bgm" src="Raim.mp3" loop></audio>
+ <audio id="bgm" loop></audio>
 
  <script>
-  const audio = document.getElementById('bgm');
-  const button = document.getElementById('musicButton');
 
-  let isPlaying = false;
+const audio = document.getElementById('bgm');
 
-  function toggleAudio() {
-
-    if (isPlaying) {
-      audio.pause();
-      button.innerText = '休憩する';
-    } else {
-      audio.play();
-      button.innerText = '休憩を終える';
-    }
-
-    isPlaying = !isPlaying;
-  }
-
-  function changeMusic(song) {
+function playMusic(song) {
 
   audio.src = song;
   audio.load();
-
   audio.play();
 
-  isPlaying = true;
-
-  button.innerText = '休憩を終える';
 }
+
+function stopMusic() {
+
+  audio.pause();
+
+}
+
 </script>
 
 </body>
