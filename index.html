@@ -78,19 +78,25 @@
 </button>
   </div>
 
- <audio id="bgm" ></audio>
+<audio id="bgm"></audio>
 
- <script>
+<p id="message"></p>
+
+<script>
 
 const audio = document.getElementById('bgm');
+const message = document.getElementById('message');
 
 function playMusic(song) {
 
+  message.innerText = '';
+
   audio.src = song;
   audio.load();
+
   audio.play().catch(error => {
-  console.log(error);
-});
+    console.log(error);
+  });
 
 }
 
@@ -99,6 +105,12 @@ function stopMusic() {
   audio.pause();
 
 }
+
+audio.addEventListener('ended', () => {
+
+  message.innerText = 'また休みに来てください。';
+
+});
 
 </script>
 
