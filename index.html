@@ -6,8 +6,7 @@
   <title>お気楽屋商店</title>
 
   <style>
-
-body {
+    body {
   margin: 0;
   height: 100vh;
   background-image: url('okirakuyashouten.png');
@@ -22,43 +21,47 @@ body {
   touch-action: manipulation;
   overflow: hidden;
 }
+    }
 
-.box {
-  background: rgba(0,0,0,0.15);
+   .box {
+  background: rgba(0,0,0,0.4);
   padding: 30px;
   border-radius: 20px;
   text-align: center;
-
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(4px);
 
   width: 90%;
   max-width: 320px;
   margin: auto;
-
+}
   position: relative;
   z-index: 10;
 }
 
-button {
+    button {
+  display: block;
 
-  appearance: none;
-  -webkit-appearance: none;
+  width: 100%;
 
-  margin-top: 20px;
-  padding: 12px 20px;
+  margin: 15px auto;
 
-  border: 1px solid rgba(255,255,255,0.15);
+  padding: 16px 24px;
+
+  border: none;
   border-radius: 999px;
 
-  background: rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.2);
 
   color: white;
-  font-size: 16px;
 
-  cursor: pointer;
+  font-size: 18px;
 }
 
-</style>
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+  </style>
 </head>
 
 <body>
