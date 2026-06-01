@@ -15,82 +15,73 @@
 }
 
 body{
-
-  height:100vh;
-
-  background:url("menyu1.png")
-  center top/cover no-repeat;
-
-  font-family:sans-serif;
-
-  overflow:hidden;
+  background:#1b120c;
+  display:flex;
+  justify-content:center;
 }
 
-/* 各部屋のクリックエリア */
+.wrapper{
+  position:relative;
+  width:100%;
+  max-width:800px;
+}
+
+.menu-image{
+  width:100%;
+  display:block;
+  height:auto;
+}
+
+/* クリックエリア */
 
 .room{
-
   position:absolute;
-
   left:50%;
-
   transform:translateX(-50%);
-
-  width:82%;
-
-  height:110px;
-
+  width:78%;
   cursor:pointer;
-
   border-radius:20px;
 }
-
-/* ホバー確認用（完成後は削除可） */
 
 .room:hover{
   background:rgba(255,255,255,.08);
 }
 
-/* 各メニュー位置 */
+/* 画像比率に合わせて配置 */
 
 .rain{
-  top:140px;
+  top:18%;
+  height:10%;
 }
 
 .radio{
-  top:320px;
+  top:33%;
+  height:10%;
 }
 
 .relax{
-  top:500px;
+  top:48%;
+  height:10%;
 }
 
 .evening{
-  top:680px;
+  top:63%;
+  height:10%;
 }
 
 .shop{
-  top:860px;
+  top:78%;
+  height:10%;
 }
 
-/* 戻る */
-
 .back{
-
   position:absolute;
-
   left:50%;
-
-  bottom:40px;
-
   transform:translateX(-50%);
-
-  width:280px;
-
-  height:70px;
-
+  top:92%;
+  width:35%;
+  height:5%;
   cursor:pointer;
-
   border-radius:12px;
 }
 
@@ -99,51 +90,32 @@ body{
 }
 
 </style>
-
 </head>
 
 <body>
 
-<!-- 雨の部屋 -->
+<div class="wrapper">
 
-<div
-class="room rain"
-onclick="location.href='rain.html'">
-</div>
+  <img src="menyu1.png" class="menu-image">
 
-<!-- 深夜ラジオ -->
+  <div class="room rain"
+       onclick="location.href='rain.html'"></div>
 
-<div
-class="room radio"
-onclick="location.href='radio.html'">
-</div>
+  <div class="room radio"
+       onclick="location.href='radio.html'"></div>
 
-<!-- ぼーっとする部屋 -->
+  <div class="room relax"
+       onclick="location.href='relax.html'"></div>
 
-<div
-class="room relax"
-onclick="location.href='relax.html'">
-</div>
+  <div class="room evening"
+       onclick="location.href='evening.html'"></div>
 
-<!-- 商店街の夕方 -->
+  <div class="room shop"
+       onclick="location.href='shop.html'"></div>
 
-<div
-class="room evening"
-onclick="location.href='evening.html'">
-</div>
+  <div class="back"
+       onclick="location.href='index.html'"></div>
 
-<!-- 店内の様子 -->
-
-<div
-class="room shop"
-onclick="location.href='shop.html'">
-</div>
-
-<!-- 店を出る -->
-
-<div
-class="back"
-onclick="location.href='index.html'">
 </div>
 
 </body>
