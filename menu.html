@@ -4,94 +4,103 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>お気楽屋商店</title>
+<title>お気楽屋商店 - 昭和メニュー</title>
 
 <style>
 
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 body{
-  background:#000;
-  overflow-y:auto;
+    background:#111;
+    display:flex;
+    justify-content:center;
 }
 
-.wrapper{
-  position:relative;
-  max-width:1080px;
-  margin:auto;
+.container{
+    position:relative;
+    width:100%;
+    max-width:1080px;
 }
 
-.wrapper img{
-  width:100%;
-  display:block;
+.menu-image{
+    width:100%;
+    display:block;
 }
 
-/* 共通 */
+/* 共通クリックエリア */
 
-.area{
-  position:absolute;
-  left:13%;
-  width:74%;
-  border-radius:20px;
-  cursor:pointer;
+.room{
+    position:absolute;
+    left:22%;
+    width:68%;
+    cursor:pointer;
+    border-radius:20px;
+
+    /* 位置確認後削除 */
+    background:rgba(255,255,255,0.03);
 }
 
-/* 雨 */
+/* 雨の部屋 */
 
 .rain{
-  top:12%;
-  height:10%;
+    top:24.4%;
+    height:8.7%;
 }
 
 /* 深夜ラジオ */
 
 .radio{
-  top:27%;
-  height:10%;
+    top:39.4%;
+    height:8.7%;
 }
 
-/* ぼーっと */
+/* ぼーっとする部屋 */
 
 .relax{
-  top:42%;
-  height:10%;
+    top:54.5%;
+    height:8.7%;
 }
 
-/* 商店街 */
+/* 商店街の夕方 */
 
 .evening{
-  top:57%;
-  height:10%;
+    top:69.6%;
+    height:8.7%;
 }
 
-/* 店内 */
+/* 店内の様子 */
 
 .shop{
-  top:72%;
-  height:10%;
+    top:84.8%;
+    height:8.7%;
 }
 
 /* 店を出る */
 
 .back{
-  position:absolute;
-  left:39%;
-  width:23%;
-  height:5%;
-  bottom:3%;
-  cursor:pointer;
+    position:absolute;
+
+    left:35%;
+    width:30%;
+
+    top:94.2%;
+    height:4.2%;
+
+    cursor:pointer;
+    border-radius:12px;
+
+    background:rgba(255,255,255,0.03);
 }
 
-/* 確認用
-完成したら削除 */
+/* 確認用 */
 
-.area:hover,
+.room:hover,
 .back:hover{
-  background:rgba(255,255,255,.08);
+    background:rgba(255,255,255,0.12);
 }
 
 </style>
@@ -99,23 +108,23 @@ body{
 
 <body>
 
-<div class="wrapper">
+<div class="container">
 
-<img src="menyu1.png">
+<img src="menyu1.png" class="menu-image">
 
-<div class="area rain"
+<div class="room rain"
 onclick="location.href='rain.html'"></div>
 
-<div class="area radio"
+<div class="room radio"
 onclick="location.href='radio.html'"></div>
 
-<div class="area relax"
+<div class="room relax"
 onclick="location.href='relax.html'"></div>
 
-<div class="area evening"
+<div class="room evening"
 onclick="location.href='evening.html'"></div>
 
-<div class="area shop"
+<div class="room shop"
 onclick="location.href='shop.html'"></div>
 
 <div class="back"
