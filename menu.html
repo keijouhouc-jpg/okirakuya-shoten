@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>お気楽屋商店 - 昭和メニュー</title>
+<title>お気楽屋商店</title>
 
 <style>
 
@@ -15,76 +15,81 @@
 }
 
 body{
-  background:#1b120c;
-  display:flex;
-  justify-content:center;
+  background:#000;
+  overflow-y:auto;
 }
 
 .wrapper{
   position:relative;
-  width:100%;
-  max-width:800px;
+  max-width:1080px;
+  margin:auto;
 }
 
-.menu-image{
+.wrapper img{
   width:100%;
   display:block;
-  height:auto;
 }
 
-/* クリックエリア */
+/* 共通 */
 
-.room{
+.area{
   position:absolute;
-  left:50%;
-  transform:translateX(-50%);
-  width:78%;
-  cursor:pointer;
+  left:13%;
+  width:74%;
   border-radius:20px;
+  cursor:pointer;
 }
 
-.room:hover{
-  background:rgba(255,255,255,.08);
-}
-
-/* 画像比率に合わせて配置 */
+/* 雨 */
 
 .rain{
-  top:18%;
+  top:12%;
   height:10%;
 }
+
+/* 深夜ラジオ */
 
 .radio{
-  top:33%;
+  top:27%;
   height:10%;
 }
+
+/* ぼーっと */
 
 .relax{
-  top:48%;
+  top:42%;
   height:10%;
 }
+
+/* 商店街 */
 
 .evening{
-  top:63%;
+  top:57%;
   height:10%;
 }
 
+/* 店内 */
+
 .shop{
-  top:78%;
+  top:72%;
   height:10%;
 }
+
+/* 店を出る */
 
 .back{
   position:absolute;
-  left:50%;
-  transform:translateX(-50%);
-  top:92%;
-  width:35%;
+  left:39%;
+  width:23%;
   height:5%;
+  bottom:3%;
   cursor:pointer;
-  border-radius:12px;
 }
 
+/* 確認用
+完成したら削除 */
+
+.area:hover,
 .back:hover{
   background:rgba(255,255,255,.08);
 }
@@ -96,25 +101,25 @@ body{
 
 <div class="wrapper">
 
-  <img src="menyu1.png" class="menu-image">
+<img src="menyu1.png">
 
-  <div class="room rain"
-       onclick="location.href='rain.html'"></div>
+<div class="area rain"
+onclick="location.href='rain.html'"></div>
 
-  <div class="room radio"
-       onclick="location.href='radio.html'"></div>
+<div class="area radio"
+onclick="location.href='radio.html'"></div>
 
-  <div class="room relax"
-       onclick="location.href='relax.html'"></div>
+<div class="area relax"
+onclick="location.href='relax.html'"></div>
 
-  <div class="room evening"
-       onclick="location.href='evening.html'"></div>
+<div class="area evening"
+onclick="location.href='evening.html'"></div>
 
-  <div class="room shop"
-       onclick="location.href='shop.html'"></div>
+<div class="area shop"
+onclick="location.href='shop.html'"></div>
 
-  <div class="back"
-       onclick="location.href='index.html'"></div>
+<div class="back"
+onclick="location.href='index.html'"></div>
 
 </div>
 
