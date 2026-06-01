@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>雨の部屋</title>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body{
+
+  height:100vh;
+
+  background:url("rain.jpg")
+  center center/cover no-repeat;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  font-family:sans-serif;
+  color:white;
+
+  overflow:hidden;
+}
+
+.overlay{
+
+  background:rgba(0,0,0,.35);
+
+  padding:30px;
+
+  border-radius:20px;
+
+  text-align:center;
+
+  backdrop-filter:blur(4px);
+}
+
+h1{
+  font-size:32px;
+  margin-bottom:10px;
+}
+
+p{
+  line-height:1.8;
+  margin-bottom:20px;
+}
+
+button{
+
+  appearance:none;
+  -webkit-appearance:none;
+
+  border:none;
+
+  padding:14px 24px;
+
+  margin:8px;
+
+  border-radius:999px;
+
+  background:rgba(255,255,255,.15);
+
+  color:white;
+
+  font-size:16px;
+
+  cursor:pointer;
+
+  backdrop-filter:blur(6px);
+}
+
+button:hover{
+  background:rgba(255,255,255,.25);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="overlay">
+
+<h1>雨の部屋</h1>
+
+<p>
+雨の音を聞きながら<br>
+少しだけ休みましょう。
+</p>
+
+<button onclick="playRain()">
+雨を降らせる
+</button>
+
+<button onclick="stopRain()">
+音を止める
+</button>
+
+<br><br>
+
+<button onclick="location.href='menu.html'">
+昭和メニューへ戻る
+</button>
+
+</div>
+
+<audio id="rainSound" loop>
+<source src="rain.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+const rain =
+document.getElementById("rainSound");
+
+function playRain(){
+
+  rain.play().catch(error=>{
+    console.log(error);
+  });
+
+}
+
+function stopRain(){
+
+  rain.pause();
+
+}
+
+</script>
+
+</body>
+</html>
