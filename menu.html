@@ -9,98 +9,84 @@
 <style>
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
 body{
-    background:#111;
-    display:flex;
-    justify-content:center;
+  background:#1b120c;
+  display:flex;
+  justify-content:center;
 }
 
-.container{
-    position:relative;
-    width:100%;
-    max-width:1080px;
+.wrapper{
+  position:relative;
+  width:100%;
+  max-width:800px;
 }
 
 .menu-image{
-    width:100%;
-    display:block;
+  width:100%;
+  display:block;
+  height:auto;
 }
 
-/* 共通クリックエリア */
+/* クリックエリア */
 
 .room{
-    position:absolute;
-    left:22%;
-    width:68%;
-    cursor:pointer;
-    border-radius:20px;
-
-    /* 位置確認後削除 */
-    background:rgba(255,255,255,0.03);
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  width:78%;
+  cursor:pointer;
+  border-radius:20px;
 }
 
-/* 雨の部屋 */
+.room:hover{
+  background:rgba(255,255,255,.08);
+}
+
+/* 画像比率に合わせて配置 */
 
 .rain{
-    top:24.4%;
-    height:8.7%;
+  top:18%;
+  height:10%;
 }
-
-/* 深夜ラジオ */
 
 .radio{
-    top:39.4%;
-    height:8.7%;
+  top:33%;
+  height:10%;
 }
-
-/* ぼーっとする部屋 */
 
 .relax{
-    top:54.5%;
-    height:8.7%;
+  top:48%;
+  height:10%;
 }
-
-/* 商店街の夕方 */
 
 .evening{
-    top:69.6%;
-    height:8.7%;
+  top:63%;
+  height:10%;
 }
-
-/* 店内の様子 */
 
 .shop{
-    top:84.8%;
-    height:8.7%;
+  top:78%;
+  height:10%;
 }
-
-/* 店を出る */
 
 .back{
-    position:absolute;
-
-    left:35%;
-    width:30%;
-
-    top:94.2%;
-    height:4.2%;
-
-    cursor:pointer;
-    border-radius:12px;
-
-    background:rgba(255,255,255,0.03);
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  top:92%;
+  width:35%;
+  height:5%;
+  cursor:pointer;
+  border-radius:12px;
 }
 
-/* 確認用 */
-
-.room:hover,
 .back:hover{
-    background:rgba(255,255,255,0.12);
+  background:rgba(255,255,255,.08);
 }
 
 </style>
@@ -108,27 +94,27 @@ body{
 
 <body>
 
-<div class="container">
+<div class="wrapper">
 
-<img src="menyu1.png" class="menu-image">
+  <img src="menyu1.png" class="menu-image">
 
-<div class="room rain"
-onclick="location.href='rain.html'"></div>
+  <div class="room rain"
+       onclick="location.href='rain.html'"></div>
 
-<div class="room radio"
-onclick="location.href='radio.html'"></div>
+  <div class="room radio"
+       onclick="location.href='radio.html'"></div>
 
-<div class="room relax"
-onclick="location.href='relax.html'"></div>
+  <div class="room relax"
+       onclick="location.href='relax.html'"></div>
 
-<div class="room evening"
-onclick="location.href='evening.html'"></div>
+  <div class="room evening"
+       onclick="location.href='evening.html'"></div>
 
-<div class="room shop"
-onclick="location.href='shop.html'"></div>
+  <div class="room shop"
+       onclick="location.href='shop.html'"></div>
 
-<div class="back"
-onclick="location.href='index.html'"></div>
+  <div class="back"
+       onclick="location.href='index.html'"></div>
 
 </div>
 
