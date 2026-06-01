@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>お気楽屋商店 - 昭和メニュー</title>
+<title>お気楽屋商店</title>
 
 <style>
 
@@ -16,6 +16,7 @@
 
 body{
   background:#000;
+  overflow-y:auto;
 }
 
 .wrapper{
@@ -31,72 +32,67 @@ body{
 
 /* 共通 */
 
-.room{
+.area{
   position:absolute;
-  left:23%;
-  width:62%;
-  cursor:pointer;
+  left:13%;
+  width:74%;
   border-radius:20px;
+  cursor:pointer;
 }
 
-/* 雨の部屋 */
+/* 雨 */
 
 .rain{
-  top:18%;
-  height:8%;
+  top:12%;
+  height:10%;
 }
 
 /* 深夜ラジオ */
 
 .radio{
-  top:35%;
-  height:8%;
+  top:27%;
+  height:10%;
 }
 
-/* ぼーっとする部屋 */
+/* ぼーっと */
 
 .relax{
-  top:52%;
-  height:8%;
+  top:42%;
+  height:10%;
 }
 
-/* 商店街の夕方 */
+/* 商店街 */
 
 .evening{
-  top:69%;
-  height:8%;
+  top:57%;
+  height:10%;
 }
 
-/* 店内の様子 */
+/* 店内 */
 
 .shop{
-  top:86%;
-  height:8%;
+  top:72%;
+  height:10%;
 }
 
 /* 店を出る */
 
 .back{
   position:absolute;
-
-  left:35%;
-  width:30%;
-
-  top:95%;
-
-  height:4.5%;
-
+  left:39%;
+  width:23%;
+  height:5%;
+  bottom:3%;
   cursor:pointer;
-
-  border-radius:12px;
 }
 
-/* デバッグ用
-.room,
-.back{
-  background:rgba(255,0,0,.2);
+/* 確認用
+完成したら削除 */
+
+.area:hover,
+.back:hover{
+  background:rgba(255,255,255,.08);
 }
-*/
 
 </style>
 </head>
@@ -105,21 +101,21 @@ body{
 
 <div class="wrapper">
 
-<img src="menyu1.png" alt="昭和メニュー">
+<img src="menyu1.png">
 
-<div class="room rain"
+<div class="area rain"
 onclick="location.href='rain.html'"></div>
 
-<div class="room radio"
+<div class="area radio"
 onclick="location.href='radio.html'"></div>
 
-<div class="room relax"
+<div class="area relax"
 onclick="location.href='relax.html'"></div>
 
-<div class="room evening"
+<div class="area evening"
 onclick="location.href='evening.html'"></div>
 
-<div class="room shop"
+<div class="area shop"
 onclick="location.href='shop.html'"></div>
 
 <div class="back"
