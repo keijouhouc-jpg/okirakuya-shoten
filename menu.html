@@ -1,1 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>お気楽屋商店 - 昭和メニュー</title>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+
+  height:100vh;
+
+  background:url("menyu1.png")
+  center top/cover no-repeat;
+
+  font-family:sans-serif;
+
+  overflow:hidden;
+}
+
+/* 各部屋のクリックエリア */
+
+.room{
+
+  position:absolute;
+
+  left:50%;
+
+  transform:translateX(-50%);
+
+  width:82%;
+
+  height:110px;
+
+  cursor:pointer;
+
+  border-radius:20px;
+}
+
+/* ホバー確認用（完成後は削除可） */
+
+.room:hover{
+  background:rgba(255,255,255,.08);
+}
+
+/* 各メニュー位置 */
+
+.rain{
+  top:140px;
+}
+
+.radio{
+  top:320px;
+}
+
+.relax{
+  top:500px;
+}
+
+.evening{
+  top:680px;
+}
+
+.shop{
+  top:860px;
+}
+
+/* 戻る */
+
+.back{
+
+  position:absolute;
+
+  left:50%;
+
+  bottom:40px;
+
+  transform:translateX(-50%);
+
+  width:280px;
+
+  height:70px;
+
+  cursor:pointer;
+
+  border-radius:12px;
+}
+
+.back:hover{
+  background:rgba(255,255,255,.08);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- 雨の部屋 -->
+
+<div
+class="room rain"
+onclick="location.href='rain.html'">
+</div>
+
+<!-- 深夜ラジオ -->
+
+<div
+class="room radio"
+onclick="location.href='radio.html'">
+</div>
+
+<!-- ぼーっとする部屋 -->
+
+<div
+class="room relax"
+onclick="location.href='relax.html'">
+</div>
+
+<!-- 商店街の夕方 -->
+
+<div
+class="room evening"
+onclick="location.href='evening.html'">
+</div>
+
+<!-- 店内の様子 -->
+
+<div
+class="room shop"
+onclick="location.href='shop.html'">
+</div>
+
+<!-- 店を出る -->
+
+<div
+class="back"
+onclick="location.href='index.html'">
+</div>
+
+</body>
+</html>
