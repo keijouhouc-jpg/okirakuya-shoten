@@ -110,15 +110,17 @@ font-size:12px;
 
 <div class="status">
 
-<h2>本日の様子</h2>
+<div class="status">
 
-<p>
-今日は静かです。<br>
-レジ前の扇風機が回っています。<br>
-猫は窓際で寝ています。<br>
-ラジオは小さめです。<br>
-お客さんはまだ来ていません。
+<h2 id="todayTitle">
+読み込み中...
+</h2>
+
+<p id="todayText">
+...
 </p>
+
+</div>
 
 </div>
 
@@ -142,15 +144,80 @@ function updateClock(){
 
 const now = new Date();
 
-const h = String(now.getHours()).padStart(2,"0");
+const h = now.getHours();
 const m = String(now.getMinutes()).padStart(2,"0");
 
 document.getElementById("clock").textContent =
 "時刻 : " + h + ":" + m;
 
+updateAtmosphere(h);
+
+}
+
+function updateAtmosphere(hour){
+
+const title =
+document.getElementById("todayTitle");
+
+const text =
+document.getElementById("todayText");
+
+if(hour >= 5 && hour < 11){
+
+title.textContent = "朝の様子";
+
+text.innerHTML = `
+店主が掃除しています。<br>
+窓を開けて空気を入れ替えています。<br>
+猫はまだ眠そうです。<br>
+ラジオはついていません。
+`;
+
+}
+
+else if(hour >= 11 && hour < 17){
+
+title.textContent = "昼の様子";
+
+text.innerHTML = `
+扇風機が回っています。<br>
+猫は窓際で昼寝しています。<br>
+店内は静かです。<br>
+外から自転車の音が聞こえます。
+`;
+
+}
+
+else if(hour >= 17 && hour < 21){
+
+title.textContent = "夕方の様子";
+
+text.innerHTML = `
+西日が入っています。<br>
+商店街の音が少しだけ聞こえます。<br>
+ラジオが小さく流れています。<br>
+猫は起きています。
+`;
+
+}
+
+else{
+
+title.textContent = "深夜の様子";
+
+text.innerHTML = `
+ラジオだけが鳴っています。<br>
+店内は薄暗いです。<br>
+外は静かです。<br>
+猫はどこかで寝ています。
+`;
+
+}
+
 }
 
 updateClock();
+
 setInterval(updateClock,1000);
 
 </script>
