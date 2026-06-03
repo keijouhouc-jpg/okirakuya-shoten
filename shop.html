@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>お気楽屋商店 - 店内の様子</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background:#121212;
+color:#f0e6d2;
+font-family:"Hiragino Sans","Yu Gothic",sans-serif;
+min-height:100vh;
+}
+
+header{
+padding:20px;
+text-align:center;
+border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+header h1{
+font-size:28px;
+font-weight:300;
+letter-spacing:4px;
+}
+
+.time{
+margin-top:10px;
+font-size:14px;
+opacity:.7;
+}
+
+main{
+max-width:1000px;
+margin:auto;
+padding:20px;
+}
+
+.photo{
+overflow:hidden;
+border-radius:16px;
+box-shadow:0 0 30px rgba(0,0,0,.4);
+}
+
+.photo img{
+width:100%;
+display:block;
+}
+
+.status{
+margin-top:25px;
+padding:25px;
+background:rgba(255,255,255,.04);
+border-radius:16px;
+line-height:2;
+}
+
+.status h2{
+margin-bottom:15px;
+font-size:22px;
+font-weight:400;
+}
+
+.note{
+margin-top:30px;
+text-align:center;
+opacity:.7;
+font-size:14px;
+}
+
+footer{
+margin-top:40px;
+padding:20px;
+text-align:center;
+opacity:.4;
+font-size:12px;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+
+<h1>店内の様子</h1>
+
+<div class="time" id="clock">
+--:--
+</div>
+
+</header>
+
+<main>
+
+<div class="photo">
+
+<!-- ここを画像に差し替える -->
+<img src="shop.jpg" alt="お気楽屋商店">
+
+</div>
+
+<div class="status">
+
+<h2>本日の様子</h2>
+
+<p>
+今日は静かです。<br>
+レジ前の扇風機が回っています。<br>
+猫は窓際で寝ています。<br>
+ラジオは小さめです。<br>
+お客さんはまだ来ていません。
+</p>
+
+</div>
+
+<div class="note">
+
+お気楽屋商店は、本日ものんびり営業中です。
+
+</div>
+
+</main>
+
+<footer>
+
+何もしない時間をどうぞ。
+
+</footer>
+
+<script>
+
+function updateClock(){
+
+const now = new Date();
+
+const h = String(now.getHours()).padStart(2,"0");
+const m = String(now.getMinutes()).padStart(2,"0");
+
+document.getElementById("clock").textContent =
+"時刻 : " + h + ":" + m;
+
+}
+
+updateClock();
+setInterval(updateClock,1000);
+
+</script>
+
+</body>
+</html>
