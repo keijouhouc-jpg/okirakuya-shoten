@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ぼーっとする部屋</title>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+body{
+
+  height:100vh;
+
+  background:
+  url("relax.png")
+  center center/cover no-repeat;
+
+  font-family:sans-serif;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  overflow:hidden;
+}
+
+/* ボタンエリア */
+
+.controls{
+
+  position:absolute;
+
+  bottom:8%;
+
+  width:70%;
+  max-width:560px;
+
+  display:flex;
+  flex-direction:column;
+
+  gap:18px;
+}
+
+/* ボタン */
+
+.btn{
+
+  width:100%;
+
+  border:none;
+
+  border-radius:999px;
+
+  padding:22px;
+
+  font-size:20px;
+
+  color:white;
+
+  cursor:pointer;
+
+  background:rgba(255,255,255,.18);
+
+  backdrop-filter:blur(6px);
+
+  transition:.2s;
+}
+
+.btn:hover{
+  background:rgba(255,255,255,.28);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="controls">
+
+<button
+class="btn"
+onclick="playRelax()">
+☁️ ぼーっとする
+</button>
+
+<button
+class="btn"
+onclick="stopRelax()">
+🔇 音を止める
+</button>
+
+<button
+class="btn"
+onclick="location.href='menu.html'">
+← メニューへ戻る
+</button>
+
+</div>
+
+<audio id="relaxSound" loop>
+<source src="relax.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+const relax =
+document.getElementById("relaxSound");
+
+function playRelax(){
+
+  relax.play().catch(error=>{
+    console.log(error);
+  });
+
+}
+
+function stopRelax(){
+
+  relax.pause();
+  relax.currentTime = 0;
+
+}
+
+</script>
+
+</body>
+</html>
