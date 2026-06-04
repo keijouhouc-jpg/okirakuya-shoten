@@ -2,199 +2,478 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>お気楽屋商店街の夕方</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>お気楽屋商店街</title>
 
 <style>
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
-body{
-    height:100vh;
-    overflow:hidden;
-    font-family:sans-serif;
+html,body{
+width:100%;
+height:100%;
+overflow:hidden;
+background:#000;
+font-family:"Yu Gothic",sans-serif;
 }
 
-/* 空 */
-.sky{
-    position:absolute;
-    width:100%;
-    height:100%;
-    background:
-    linear-gradient(
-    to bottom,
-    #ffb36b 0%,
-    #ff8e72 40%,
-    #6d5ca8 100%);
+#scene{
+position:relative;
+width:100%;
+height:100vh;
+overflow:hidden;
 }
 
-/* 太陽 */
-.sun{
-    position:absolute;
-    width:120px;
-    height:120px;
-    border-radius:50%;
-    background:#ffd76a;
-    left:50%;
-    top:15%;
-    transform:translateX(-50%);
-    box-shadow:0 0 50px rgba(255,215,106,.8);
+/* 背景画像 */
+
+#bg{
+position:absolute;
+width:100%;
+height:100%;
+object-fit:cover;
+animation:dayNight 120s infinite alternate;
 }
 
-/* 遠景 */
-.mountains{
-    position:absolute;
-    bottom:220px;
-    width:100%;
-    height:200px;
-    background:
-    linear-gradient(
-    to top,
-    #5c5470,
-    #7b7395);
-    clip-path:polygon(
-    0 100%,
-    10% 60%,
-    20% 80%,
-    35% 40%,
-    50% 75%,
-    65% 35%,
-    80% 80%,
-    100% 50%,
-    100% 100%);
+@keyframes dayNight{
+
+0%{
+filter:brightness(1);
 }
 
-/* 商店街 */
-.street{
-    position:absolute;
-    bottom:0;
-    width:100%;
-    height:220px;
-    background:#444;
+100%{
+filter:brightness(.55)
+saturate(.85);
 }
 
-/* 店 */
-.shop{
-    position:absolute;
-    bottom:220px;
-    width:180px;
-    height:160px;
-    background:#d8c5a3;
-    border:3px solid #444;
 }
-
-.shop::before{
-    content:"";
-    position:absolute;
-    width:100%;
-    height:40px;
-    background:#c44;
-    top:0;
-    left:0;
-}
-
-.shop1{left:5%;}
-.shop2{left:28%;}
-.shop3{left:51%;}
-.shop4{left:74%;}
-
-/* 窓 */
-.window{
-    position:absolute;
-    width:50px;
-    height:50px;
-    background:#ffd86e;
-    top:65px;
-}
-
-.w1{left:20px;}
-.w2{right:20px;}
-
-/* 街灯 */
-.lamp{
-    position:absolute;
-    bottom:220px;
-    width:8px;
-    height:140px;
-    background:#333;
-}
-
-.lamp::before{
-    content:"";
-    position:absolute;
-    width:35px;
-    height:35px;
-    border-radius:50%;
-    background:#ffe08a;
-    top:-20px;
-    left:-13px;
-    box-shadow:0 0 25px #ffe08a;
-}
-
-.l1{left:18%;}
-.l2{left:50%;}
-.l3{left:82%;}
 
 /* タイトル */
-.title{
-    position:absolute;
-    width:100%;
-    text-align:center;
-    top:30px;
-    color:white;
-    font-size:2rem;
-    text-shadow:2px 2px 8px rgba(0,0,0,.5);
+
+#title{
+
+position:absolute;
+top:20px;
+left:50%;
+transform:translateX(-50%);
+
+text-align:center;
+
+color:white;
+
+z-index:20;
+
+text-shadow:
+0 0 10px #000,
+0 0 20px #000;
+
 }
 
-.sub{
-    font-size:1rem;
-    margin-top:10px;
+#title h1{
+font-size:clamp(24px,5vw,56px);
+}
+
+#title p{
+font-size:clamp(12px,2vw,22px);
+}
+
+/* 雲 */
+
+.cloud{
+
+position:absolute;
+
+width:260px;
+height:80px;
+
+background:
+rgba(255,255,255,.12);
+
+border-radius:50px;
+
+filter:blur(8px);
+
+animation:
+cloudMove linear infinite;
+
+}
+
+@keyframes cloudMove{
+
+from{
+transform:
+translateX(-350px);
+}
+
+to{
+transform:
+translateX(calc(100vw + 350px));
+}
+
+}
+
+/* ホタル */
+
+.firefly{
+
+position:absolute;
+
+color:#ffe95e;
+
+font-size:14px;
+
+text-shadow:
+0 0 8px #ffe95e,
+0 0 20px #ffe95e;
+
+animation:
+float 5s ease-in-out infinite;
+
+}
+
+@keyframes float{
+
+50%{
+transform:
+translateY(-25px);
+}
+
+}
+
+/* 猫 */
+
+#cat{
+
+position:absolute;
+
+bottom:10%;
+
+left:-10%;
+
+font-size:48px;
+
+z-index:15;
+
+animation:
+catWalk 35s linear infinite;
+
+}
+
+@keyframes catWalk{
+
+from{
+left:-10%;
+}
+
+to{
+left:110%;
+}
+
+}
+
+/* 雨 */
+
+.rain{
+
+position:absolute;
+
+width:2px;
+height:18px;
+
+background:#bde6ff;
+
+animation:
+rainFall 1s linear infinite;
+
+}
+
+@keyframes rainFall{
+
+to{
+transform:
+translateY(120vh);
+}
+
+}
+
+/* 雪 */
+
+.snow{
+
+position:absolute;
+
+color:white;
+
+animation:
+snowFall 10s linear infinite;
+
+}
+
+@keyframes snowFall{
+
+to{
+transform:
+translateY(120vh);
+}
+
+}
+
+/* ボタン */
+
+#controls{
+
+position:absolute;
+
+right:15px;
+bottom:15px;
+
+display:flex;
+gap:8px;
+
+flex-wrap:wrap;
+
+z-index:100;
+
+}
+
+#controls button{
+
+padding:10px 14px;
+
+border:none;
+
+border-radius:20px;
+
+background:
+rgba(255,255,255,.9);
+
+cursor:pointer;
+
+font-size:14px;
+
+}
+
+#controls button:hover{
+
+transform:scale(1.05);
+
 }
 
 </style>
 </head>
+
 <body>
 
-<div class="sky"></div>
-<div class="sun"></div>
-<div class="mountains"></div>
+<div id="scene">
 
-<div class="title">
-    お気楽屋商店街
-    <div class="sub">
-        夕暮れのんびり時間
-    </div>
+<img
+src="evening1.png"
+id="bg"
+alt="お気楽屋商店街">
+
+<div id="title">
+
+<h1>お気楽屋商店街</h1>
+
+<p>
+本日ものんびり営業中
+</p>
+
 </div>
 
-<div class="shop shop1">
-    <div class="window w1"></div>
-    <div class="window w2"></div>
+<div id="cloudLayer"></div>
+
+<div id="fireflyLayer"></div>
+
+<div id="weatherLayer"></div>
+
+<div id="cat">
+🐈‍⬛
 </div>
 
-<div class="shop shop2">
-    <div class="window w1"></div>
-    <div class="window w2"></div>
+<div id="controls">
+
+<button id="radioBtn">
+📻 深夜ラジオ
+</button>
+
+<button id="crowBtn">
+🐦‍⬛ カラス
+</button>
+
+<button id="rainBtn">
+☔ 雨
+</button>
+
+<button id="snowBtn">
+❄ 雪
+</button>
+
 </div>
 
-<div class="shop shop3">
-    <div class="window w1"></div>
-    <div class="window w2"></div>
 </div>
 
-<div class="shop shop4">
-    <div class="window w1"></div>
-    <div class="window w2"></div>
-</div>
+<script>
 
-<div class="lamp l1"></div>
-<div class="lamp l2"></div>
-<div class="lamp l3"></div>
+/* 雲 */
 
-<div class="street"></div>
+for(let i=0;i<5;i++){
+
+const cloud=
+document.createElement("div");
+
+cloud.className=
+"cloud";
+
+cloud.style.top=
+(5+i*12)+"%";
+
+cloud.style.animationDuration=
+(80+i*20)+"s";
+
+document
+.getElementById("cloudLayer")
+.appendChild(cloud);
+
+}
+
+/* ホタル */
+
+for(let i=0;i<25;i++){
+
+const firefly=
+document.createElement("div");
+
+firefly.className=
+"firefly";
+
+firefly.innerHTML=
+"✨";
+
+firefly.style.left=
+Math.random()*100+"vw";
+
+firefly.style.bottom=
+(10+Math.random()*20)+"vh";
+
+firefly.style.animationDelay=
+Math.random()*5+"s";
+
+document
+.getElementById("fireflyLayer")
+.appendChild(firefly);
+
+}
+
+/* 雨 */
+
+let rainMode=false;
+
+document
+.getElementById("rainBtn")
+.onclick=()=>{
+
+rainMode=!rainMode;
+
+const layer=
+document
+.getElementById("weatherLayer");
+
+layer.innerHTML="";
+
+if(rainMode){
+
+for(let i=0;i<150;i++){
+
+const r=
+document.createElement("div");
+
+r.className="rain";
+
+r.style.left=
+Math.random()*100+"vw";
+
+r.style.animationDelay=
+Math.random()+"s";
+
+layer.appendChild(r);
+
+}
+
+}
+
+};
+
+/* 雪 */
+
+let snowMode=false;
+
+document
+.getElementById("snowBtn")
+.onclick=()=>{
+
+snowMode=!snowMode;
+
+const layer=
+document
+.getElementById("weatherLayer");
+
+layer.innerHTML="";
+
+if(snowMode){
+
+for(let i=0;i<100;i++){
+
+const s=
+document.createElement("div");
+
+s.className="snow";
+
+s.innerHTML="❄";
+
+s.style.left=
+Math.random()*100+"vw";
+
+s.style.animationDelay=
+Math.random()*10+"s";
+
+layer.appendChild(s);
+
+}
+
+}
+
+};
+
+/* ラジオ */
+
+document
+.getElementById("radioBtn")
+.onclick=()=>{
+
+alert(
+"radio.mp3 を追加すると再生できます"
+);
+
+};
+
+/* カラス */
+
+document
+.getElementById("crowBtn")
+.onclick=()=>{
+
+alert(
+"crow.mp3 を追加すると再生できます"
+);
+
+};
+
+</script>
 
 </body>
 </html>
