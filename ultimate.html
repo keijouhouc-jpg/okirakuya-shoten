@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>お気楽屋商店街 Ultimate</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<div id="scene">
+
+```
+<!-- 背景画像 -->
+<img src="keijouhouc.jpg" id="bg" alt="お気楽屋商店街">
+
+<!-- 昼夜変化オーバーレイ -->
+<div id="nightOverlay"></div>
+
+<!-- アニメーションレイヤー -->
+<div id="cloudLayer"></div>
+<div id="starLayer"></div>
+<div id="fireflyLayer"></div>
+<div id="crowLayer"></div>
+<div id="weatherLayer"></div>
+
+<!-- 店の灯り -->
+<div id="windowLight"></div>
+
+<!-- 街灯 -->
+<div id="streetLight"></div>
+
+<!-- タイトル -->
+<div id="title">
+
+    <h1>お気楽屋商店街</h1>
+
+    <p>
+        本日ものんびり営業中
+    </p>
+
+</div>
+
+<!-- 猫 -->
+<div id="cat">
+    🐈‍⬛
+</div>
+
+<!-- メッセージ -->
+<div id="message">
+
+    商店街には西日が差し込み、<br>
+    どこかの店からラジオが聞こえる。
+
+</div>
+
+<!-- 操作ボタン -->
+<div id="controls">
+
+    <button class="ctrl" id="radioBtn">
+        📻 深夜ラジオ
+    </button>
+
+    <button class="ctrl" id="crowBtn">
+        🐦‍⬛ カラス
+    </button>
+
+    <button class="ctrl" id="rainBtn">
+        ☔ 雨
+    </button>
+
+    <button class="ctrl" id="snowBtn">
+        ❄ 雪
+    </button>
+
+    <button class="ctrl" id="nightBtn">
+        🌙 深夜
+    </button>
+
+    <button class="ctrl" id="chimeBtn">
+        🔔 チャイム
+    </button>
+
+</div>
+
+<!-- 音声 -->
+<audio id="radioAudio" src="radio.mp3"></audio>
+
+<audio id="crowAudio" src="crow.mp3"></audio>
+
+<audio id="chimeAudio" src="chime.mp3"></audio>
+```
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
