@@ -124,11 +124,8 @@ transform:translateY(-2px);
 <div class="photo">
 
 <!-- ここを画像に差し替える -->
-<img src="shop1.png" alt="お気楽屋商店">
-
+<img id="shopImage" src="shop1.png" alt="お気楽屋商店">
 </div>
-
-<div class="status">
 
 <div class="status">
 
@@ -188,7 +185,12 @@ document.getElementById("todayTitle");
 const text =
 document.getElementById("todayText");
 
+const image =
+document.getElementById("shopImage");
+  
 if(hour >= 5 && hour < 11){
+
+image.src = "morning.png";
 
 title.textContent = "朝の様子";
 
@@ -203,6 +205,8 @@ text.innerHTML = `
 
 else if(hour >= 11 && hour < 17){
 
+image.src = "day.png";
+  
 title.textContent = "昼の様子";
 
 text.innerHTML = `
@@ -216,6 +220,8 @@ text.innerHTML = `
 
 else if(hour >= 17 && hour < 21){
 
+image.src = "evening.png"; 
+  
 title.textContent = "夕方の様子";
 
 text.innerHTML = `
@@ -228,7 +234,9 @@ text.innerHTML = `
 }
 
 else{
-
+  
+image.src = "night.png";
+  
 title.textContent = "深夜の様子";
 
 text.innerHTML = `
