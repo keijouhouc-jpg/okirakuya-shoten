@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>お気楽屋商店街</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html,body{
+width:100%;
+height:100%;
+overflow:hidden;
+background:#000;
+font-family:"Yu Gothic",sans-serif;
+}
+
+#scene{
+position:relative;
+width:100%;
+height:100vh;
+overflow:hidden;
+}
+
+/* 背景画像 */
+
+#bg{
+position:absolute;
+width:100%;
+height:100%;
+object-fit:cover;
+animation:dayNight 120s infinite alternate;
+}
+
+@keyframes dayNight{
+
+0%{
+filter:brightness(1);
+}
+
+100%{
+filter:brightness(.55)
+saturate(.85);
+}
+
+}
+
+/* タイトル */
+
+#title{
+
+position:absolute;
+top:20px;
+left:50%;
+transform:translateX(-50%);
+
+text-align:center;
+
+color:white;
+
+z-index:20;
+
+text-shadow:
+0 0 10px #000,
+0 0 20px #000;
+
+}
+
+#title h1{
+font-size:clamp(24px,5vw,56px);
+}
+
+#title p{
+font-size:clamp(12px,2vw,22px);
+}
+
+/* 雲 */
+
+.cloud{
+
+position:absolute;
+
+width:260px;
+height:80px;
+
+background:
+rgba(255,255,255,.12);
+
+border-radius:50px;
+
+filter:blur(8px);
+
+animation:
+cloudMove linear infinite;
+
+}
+
+@keyframes cloudMove{
+
+from{
+transform:
+translateX(-350px);
+}
+
+to{
+transform:
+translateX(calc(100vw + 350px));
+}
+
+}
+
+/* ホタル */
+
+.firefly{
+
+position:absolute;
+
+color:#ffe95e;
+
+font-size:14px;
+
+text-shadow:
+0 0 8px #ffe95e,
+0 0 20px #ffe95e;
+
+animation:
+float 5s ease-in-out infinite;
+
+}
+
+@keyframes float{
+
+50%{
+transform:
+translateY(-25px);
+}
+
+}
+
+/* 猫 */
+
+#cat{
+
+position:absolute;
+
+bottom:10%;
+
+left:-10%;
+
+font-size:48px;
+
+z-index:15;
+
+animation:
+catWalk 35s linear infinite;
+
+}
+
+@keyframes catWalk{
+
+from{
+left:-10%;
+}
+
+to{
+left:110%;
+}
+
+}
+
+/* 雨 */
+
+.rain{
+
+position:absolute;
+
+width:2px;
+height:18px;
+
+background:#bde6ff;
+
+animation:
+rainFall 1s linear infinite;
+
+}
+
+@keyframes rainFall{
+
+to{
+transform:
+translateY(120vh);
+}
+
+}
+
+/* 雪 */
+
+.snow{
+
+position:absolute;
+
+color:white;
+
+animation:
+snowFall 10s linear infinite;
+
+}
+
+@keyframes snowFall{
+
+to{
+transform:
+translateY(120vh);
+}
+
+}
+
+/* ボタン */
+
+#controls{
+
+position:absolute;
+
+right:15px;
+bottom:15px;
+
+display:flex;
+gap:8px;
+
+flex-wrap:wrap;
+
+z-index:100;
+
+}
+
+#controls button{
+
+padding:10px 14px;
+
+border:none;
+
+border-radius:20px;
+
+background:
+rgba(255,255,255,.9);
+
+cursor:pointer;
+
+font-size:14px;
+
+}
+
+#controls button:hover{
+
+transform:scale(1.05);
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="scene">
+
+<img
+src="evening1.png"
+id="bg"
+alt="お気楽屋商店街">
+
+<div id="title">
+
+<h1>お気楽屋商店街</h1>
+
+<p>
+本日ものんびり営業中
+</p>
+
+</div>
+
+<div id="cloudLayer"></div>
+
+<div id="fireflyLayer"></div>
+
+<div id="weatherLayer"></div>
+
+<div id="cat">
+🐈‍⬛
+</div>
+
+<div id="controls">
+
+<button id="radioBtn">
+📻 深夜ラジオ
+</button>
+
+<button id="crowBtn">
+🐦‍⬛ カラス
+</button>
+
+<button id="rainBtn">
+☔ 雨
+</button>
+
+<button id="snowBtn">
+❄ 雪
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+/* 雲 */
+
+for(let i=0;i<5;i++){
+
+const cloud=
+document.createElement("div");
+
+cloud.className=
+"cloud";
+
+cloud.style.top=
+(5+i*12)+"%";
+
+cloud.style.animationDuration=
+(80+i*20)+"s";
+
+document
+.getElementById("cloudLayer")
+.appendChild(cloud);
+
+}
+
+/* ホタル */
+
+for(let i=0;i<25;i++){
+
+const firefly=
+document.createElement("div");
+
+firefly.className=
+"firefly";
+
+firefly.innerHTML=
+"✨";
+
+firefly.style.left=
+Math.random()*100+"vw";
+
+firefly.style.bottom=
+(10+Math.random()*20)+"vh";
+
+firefly.style.animationDelay=
+Math.random()*5+"s";
+
+document
+.getElementById("fireflyLayer")
+.appendChild(firefly);
+
+}
+
+/* 雨 */
+
+let rainMode=false;
+
+document
+.getElementById("rainBtn")
+.onclick=()=>{
+
+rainMode=!rainMode;
+
+const layer=
+document
+.getElementById("weatherLayer");
+
+layer.innerHTML="";
+
+if(rainMode){
+
+for(let i=0;i<150;i++){
+
+const r=
+document.createElement("div");
+
+r.className="rain";
+
+r.style.left=
+Math.random()*100+"vw";
+
+r.style.animationDelay=
+Math.random()+"s";
+
+layer.appendChild(r);
+
+}
+
+}
+
+};
+
+/* 雪 */
+
+let snowMode=false;
+
+document
+.getElementById("snowBtn")
+.onclick=()=>{
+
+snowMode=!snowMode;
+
+const layer=
+document
+.getElementById("weatherLayer");
+
+layer.innerHTML="";
+
+if(snowMode){
+
+for(let i=0;i<100;i++){
+
+const s=
+document.createElement("div");
+
+s.className="snow";
+
+s.innerHTML="❄";
+
+s.style.left=
+Math.random()*100+"vw";
+
+s.style.animationDelay=
+Math.random()*10+"s";
+
+layer.appendChild(s);
+
+}
+
+}
+
+};
+
+/* ラジオ */
+
+document
+.getElementById("radioBtn")
+.onclick=()=>{
+
+alert(
+"radio.mp3 を追加すると再生できます"
+);
+
+};
+
+/* カラス */
+
+document
+.getElementById("crowBtn")
+.onclick=()=>{
+
+alert(
+"crow.mp3 を追加すると再生できます"
+);
+
+};
+
+</script>
+
+</body>
+</html>
