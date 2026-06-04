@@ -1,0 +1,471 @@
+/* =========================
+   リセット
+========================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html,
+body{
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  font-family:"Yu Gothic",sans-serif;
+  background:#000;
+}
+
+/* =========================
+   メインシーン
+========================= */
+
+#scene{
+  position:relative;
+  width:100%;
+  height:100vh;
+  overflow:hidden;
+}
+
+/* =========================
+   背景画像
+========================= */
+
+#bg{
+  position:absolute;
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  z-index:1;
+}
+
+/* =========================
+   夕方→夜
+========================= */
+
+#nightOverlay{
+  position:absolute;
+  inset:0;
+
+  background:
+  linear-gradient(
+    to bottom,
+    rgba(0,0,40,0),
+    rgba(0,0,70,.6)
+  );
+
+  z-index:2;
+
+  animation:
+  eveningToNight 120s linear infinite alternate;
+}
+
+@keyframes eveningToNight{
+
+  0%{
+    opacity:0;
+  }
+
+  100%{
+    opacity:1;
+  }
+
+}
+
+/* =========================
+   レイヤー
+========================= */
+
+#cloudLayer,
+#starLayer,
+#fireflyLayer,
+#crowLayer,
+#weatherLayer{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+
+#cloudLayer{z-index:4;}
+#starLayer{z-index:5;}
+#fireflyLayer{z-index:6;}
+#crowLayer{z-index:7;}
+#weatherLayer{z-index:8;}
+
+/* =========================
+   タイトル
+========================= */
+
+#title{
+  position:absolute;
+
+  top:25px;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  color:white;
+
+  text-align:center;
+
+  z-index:50;
+
+  text-shadow:
+  0 0 10px #000,
+  0 0 20px #000;
+}
+
+#title h1{
+  font-size:
+  clamp(28px,5vw,64px);
+}
+
+#title p{
+  margin-top:10px;
+  font-size:
+  clamp(14px,2vw,22px);
+}
+
+/* =========================
+   店の灯り
+========================= */
+
+#windowLight{
+
+  position:absolute;
+
+  right:23%;
+  bottom:36%;
+
+  width:120px;
+  height:90px;
+
+  border-radius:12px;
+
+  background:
+  rgba(255,210,120,.2);
+
+  filter:
+  blur(8px);
+
+  z-index:3;
+
+  animation:
+  lightOn 120s infinite alternate;
+}
+
+@keyframes lightOn{
+
+  0%{
+    opacity:.2;
+  }
+
+  100%{
+    opacity:1;
+  }
+
+}
+
+/* =========================
+   街灯
+========================= */
+
+#streetLight{
+
+  position:absolute;
+
+  left:22%;
+  top:35%;
+
+  width:20px;
+  height:20px;
+
+  border-radius:50%;
+
+  background:#ffd76a;
+
+  box-shadow:
+  0 0 10px #ffd76a,
+  0 0 40px #ffd76a,
+  0 0 80px #ffd76a;
+
+  opacity:0;
+
+  z-index:10;
+
+  animation:
+  streetLamp 120s infinite alternate;
+}
+
+@keyframes streetLamp{
+
+  0%{
+    opacity:0;
+  }
+
+  100%{
+    opacity:1;
+  }
+
+}
+
+/* =========================
+   猫
+========================= */
+
+#cat{
+
+  position:absolute;
+
+  bottom:8%;
+  left:-10%;
+
+  font-size:50px;
+
+  z-index:20;
+
+  animation:
+  catWalk 40s linear infinite;
+}
+
+@keyframes catWalk{
+
+  from{
+    left:-10%;
+  }
+
+  to{
+    left:110%;
+  }
+
+}
+
+/* =========================
+   メッセージ
+========================= */
+
+#message{
+
+  position:absolute;
+
+  left:20px;
+  bottom:20px;
+
+  max-width:320px;
+
+  padding:15px;
+
+  border-radius:20px;
+
+  background:
+  rgba(0,0,0,.35);
+
+  color:white;
+
+  backdrop-filter:
+  blur(5px);
+
+  z-index:100;
+}
+
+/* =========================
+   ボタン
+========================= */
+
+#controls{
+
+  position:absolute;
+
+  right:20px;
+  bottom:20px;
+
+  display:flex;
+  flex-direction:column;
+
+  gap:10px;
+
+  z-index:100;
+}
+
+.ctrl{
+
+  width:180px;
+
+  padding:12px;
+
+  border:none;
+
+  border-radius:999px;
+
+  color:white;
+
+  cursor:pointer;
+
+  background:
+  rgba(255,255,255,.18);
+
+  backdrop-filter:
+  blur(5px);
+
+  transition:
+  all .3s ease;
+}
+
+.ctrl:hover{
+
+  transform:
+  scale(1.05);
+
+  background:
+  rgba(255,255,255,.3);
+}
+
+/* =========================
+   星
+========================= */
+
+.star{
+
+  position:absolute;
+
+  width:3px;
+  height:3px;
+
+  border-radius:50%;
+
+  background:white;
+
+  animation:
+  twinkle 3s infinite;
+}
+
+@keyframes twinkle{
+
+  50%{
+    opacity:.2;
+  }
+
+}
+
+/* =========================
+   ホタル
+========================= */
+
+.firefly{
+
+  position:absolute;
+
+  width:6px;
+  height:6px;
+
+  border-radius:50%;
+
+  background:#ffee66;
+
+  box-shadow:
+  0 0 8px #ffee66,
+  0 0 20px #ffee66;
+
+  animation:
+  fireflyFloat 5s ease-in-out infinite;
+}
+
+@keyframes fireflyFloat{
+
+  50%{
+    transform:
+    translateY(-25px);
+  }
+
+}
+
+/* =========================
+   雲
+========================= */
+
+.cloud{
+
+  position:absolute;
+
+  width:250px;
+  height:70px;
+
+  border-radius:50px;
+
+  background:
+  rgba(255,255,255,.12);
+
+  filter:
+  blur(8px);
+
+  animation:
+  cloudMove linear infinite;
+}
+
+@keyframes cloudMove{
+
+  from{
+    transform:
+    translateX(-300px);
+  }
+
+  to{
+    transform:
+    translateX(calc(100vw + 300px));
+  }
+
+}
+
+/* =========================
+   雨
+========================= */
+
+.rain{
+
+  position:absolute;
+
+  width:2px;
+  height:18px;
+
+  background:#bce6ff;
+
+  animation:
+  rainFall 1s linear infinite;
+}
+
+@keyframes rainFall{
+
+  to{
+    transform:
+    translateY(110vh);
+  }
+
+}
+
+/* =========================
+   雪
+========================= */
+
+.snow{
+
+  position:absolute;
+
+  color:white;
+
+  animation:
+  snowFall 10s linear infinite;
+}
+
+@keyframes snowFall{
+
+  to{
+    transform:
+    translateY(110vh);
+  }
+
+}
