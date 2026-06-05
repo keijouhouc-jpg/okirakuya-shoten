@@ -472,4 +472,37 @@ body{
     translateY(110vh);
   }
 
+@media (max-width:768px){
+
+  .ctrl{
+    width:140px;
+    padding:10px;
+    font-size:15px;
+  }
+
+   .ctrl:hover{
+
+  transform:
+  scale(1.05);
+
+  background:
+  rgba(255,255,255,.3);
+}
+
+/* スマホ専用設定 */
+@media (max-width:768px){
+
+  #title h1{
+    font-size:42px;
+  }
+
+  #title p{
+    font-size:18px;
+  }
+
+}
+
+}
+   
+
 }
