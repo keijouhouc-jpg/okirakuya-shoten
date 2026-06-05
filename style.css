@@ -124,12 +124,10 @@ body{
 }
 
 #title h1{
-
   font-size:
-  clamp(28px,5vw,64px);
+  clamp(24px,4vw,52px);
 
   white-space: nowrap;
-
 }
 
 #title p{
@@ -265,19 +263,13 @@ body{
 
   max-width:300px;
 
-  padding:15px;
-
-  border-radius:20px;
-
-  background:
-  rgba(0,0,0,.35);
-
   color:white;
 
   font-size:20px;
 
-  backdrop-filter:
-  blur(5px);
+  text-shadow:
+  0 0 8px #000,
+  0 0 15px #000;
 
   z-index:100;
 }
