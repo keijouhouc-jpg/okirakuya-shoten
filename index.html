@@ -6,35 +6,32 @@
   <title>お気楽屋商店</title>
 
   <style>
-  body {
-  margin: 0;
+  body{
+  margin:0;
+  min-height:100vh;
 
-  min-height: 100vh;
+  background:#000;
 
-  background-image: url('shop.png');
-  background-size: cover;
-  background-position: center center;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  font-family: sans-serif;
-  color: white;
-
-  overflow-y: auto;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
-  .box {
-  padding: 20px;
-  text-align: center;
+#bg{
+  position:fixed;
+  inset:0;
 
-  width: 90%;
-  max-width: 320px;
-  margin: auto;
+  width:100%;
+  height:100%;
 
-  position: relative;
-  z-index: 10;
+  object-fit:contain;
+
+  z-index:1;
+}
+
+.box{
+  position:relative;
+  z-index:10;
 }
    button {
   display: block;
@@ -70,6 +67,8 @@
 
 <body>
 
+  <img id="bg" src="shop.png" alt="">
+  
   <div class="box">
     <h1>お気楽屋商店</h1>
 
