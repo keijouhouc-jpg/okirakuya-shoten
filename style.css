@@ -320,10 +320,12 @@ body{
   cursor:pointer;
 
   background:
-  rgba(255,255,255,.06);
+  rgba(255,255,255,.03);
 
+   border:1px solid rgba(255,255,255,.12);
+   
   backdrop-filter:
-  blur(5px);
+  blur(8px);
 
   transition:
   all .3s ease;
@@ -335,7 +337,7 @@ body{
   scale(1.05);
 
   background:
-  rgba(255,255,255,.3);
+  rgba(255,255,255,.08);
 }
 
 /* =========================
