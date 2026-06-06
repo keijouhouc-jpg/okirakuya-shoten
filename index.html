@@ -6,84 +6,58 @@
   <title>お気楽屋商店</title>
 
   <style>
-  body{
-  margin:0;
-  min-height:100vh;
+    body {
+  margin: 0;
+  height: 100vh;
+  background-image: url('shop.png');
+  background-size: cover;
+  background-position: center top;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+  color: white;
 
-  background:#000;
-
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  touch-action: manipulation;
+  overflow: hidden;
 }
 
-#bg{
-  position:fixed;
-  inset:0;
+  .box {
+  padding: 30px;
+  text-align: center;
 
-  width:100%;
-  height:100%;
+  width: 90%;
+  max-width: 320px;
+  margin: auto;
 
-  object-fit:cover;
+  position: relative;
+  z-index: 10;
+}
+   button {
+  display: block;
 
-  z-index:1;
+  width: 200px;
+
+  margin: 12px auto;
+
+  padding: 10px 18px;
+
+  border: none;
+  border-radius: 999px;
+
+  background: rgba(255,255,255,0.2);
+
+  color: white;
+
+  font-size: 16px;
+
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+
+  transition: all 0.3s ease;
 }
 
-.box{
-  width:90%;
-  max-width:320px;
-
-  text-align:center;
-
-  position:relative;
-  z-index:10;
-
-  margin-top:150px;
-}
-   .box{
-  width:90%;
-  max-width:320px;
-
-  text-align:center;
-
-  position:relative;
-  z-index:10;
-
-  margin-top:250px;
-}
-
-    button{
-  display:block;
-  width:220px;
-
-  margin:12px auto;
-  padding:12px 18px;
-
-  border:none;
-  border-radius:999px;
-
-  background:rgba(0,0,0,0.35);
-
-  color:white;
-  font-size:16px;
-
-  cursor:pointer;
-
-  backdrop-filter:blur(3px);
-
-  transition:all .3s ease;
-}
-
-.enter-btn{
-  width:260px;
-  padding:16px 20px;
-
-  font-size:20px;
-  font-weight:bold;
-
-  background:rgba(255,255,255,0.25);
-}
-    
   button:hover{
   background: rgba(255,255,255,0.3);
   transform: scale(1.03);
@@ -93,9 +67,12 @@
 
 <body>
 
-  <img id="bg" src="shop.png" alt="">
-  
   <div class="box">
+    <h1>お気楽屋商店</h1>
+
+    <p>
+      今日は、何もしない。<br>
+    </p>
 
 <button onclick="playMusic('un02.aac')">
   今月の曲
@@ -120,8 +97,8 @@ class="enter-btn"
 onclick="location.href='menu.html'">
 🏮 店に入る
 </button>
-
-</div>
+    
+  </div>
 
  <audio id="bgm" ></audio>
 
