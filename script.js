@@ -255,27 +255,6 @@ layer.appendChild(snow);
 
 };
 
-/* =========================
-   深夜ラジオ
-========================= */
-
-const radioBtn =
-document.getElementById("radioBtn");
-
-radioBtn.onclick=()=>{
-
-radioAudio.currentTime=0;
-
-radioAudio.play()
-.catch(()=>{
-
-alert(
-"radio.mp3 を配置してください"
-);
-
-});
-
-};
 
 /* =========================
    カラス
