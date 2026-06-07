@@ -307,7 +307,7 @@ body{
 
 .ctrl{
 
-  width:180px;
+  width:140px;
 
   padding:12px;
 
@@ -482,6 +482,8 @@ body{
     transform:
     translateY(110vh);
   }
+   
+}
 
 @media (max-width:768px){
 
