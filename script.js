@@ -289,9 +289,6 @@ alert(
 const chimeBtn =
 document.getElementById("chimeBtn");
 
-const chimeAudio =
-document.getElementById("chimeAudio");
-
 chimeBtn.addEventListener("click",()=>{
 
   if(chimeAudio.paused){
