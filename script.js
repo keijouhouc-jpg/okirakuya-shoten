@@ -279,26 +279,40 @@ alert(
 };
 
 /* =========================
-   チャイム
+   アナウンス
+========================= */
+
+/* =========================
+   アナウンス
 ========================= */
 
 const chimeBtn =
 document.getElementById("chimeBtn");
 
-chimeBtn.onclick=()=>{
+const chimeAudio =
+document.getElementById("chimeAudio");
 
-chimeAudio.currentTime=0;
+chimeBtn.addEventListener("click",()=>{
 
-chimeAudio.play()
-.catch(()=>{
+  if(chimeAudio.paused){
 
-alert(
-"chime.mp3 を配置してください"
-);
+    chimeAudio.play()
+    .catch(()=>{
+
+      alert(
+      "chime.mp3 を配置してください"
+      );
+
+    });
+
+  }else{
+
+    chimeAudio.pause();
+    chimeAudio.currentTime=0;
+
+  }
 
 });
-
-};
 
 /* =========================
    深夜モード
