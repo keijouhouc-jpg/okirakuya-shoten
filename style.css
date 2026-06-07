@@ -521,4 +521,9 @@ body{
     font-size:18px;
   }
 
+   #controls{
+    bottom:80px;
+  }
+
+}
 }
