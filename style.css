@@ -328,9 +328,9 @@ body{
   cursor:pointer;
 
   background:
-  rgba(255,255,255,.03);
+  rgba(255,255,255,.02);
 
-   border:1px solid rgba(255,255,255,.12);
+   border:1px solid rgba(255,255,255,.08);
    
   backdrop-filter:
   blur(8px);
@@ -345,7 +345,7 @@ body{
   scale(1.05);
 
   background:
-  rgba(255,255,255,.08);
+  rgba(255,255,255,.05);
 }
 
 /* =========================
