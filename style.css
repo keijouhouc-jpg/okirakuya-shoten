@@ -42,7 +42,7 @@ body{
 
   object-fit:cover;
 
-  object-position:center top;
+  object-position:center center;
 
   z-index:1;
 }
