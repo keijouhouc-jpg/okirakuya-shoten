@@ -15,136 +15,78 @@
 }
 
 body{
-
-  background:
-  linear-gradient(
-    rgba(0,0,0,.55),
-    rgba(0,0,0,.55)
-  ),
-  url("shop.png");
-
-  background-size:cover;
-  background-position:center;
-  background-attachment:fixed;
-
-  font-family:
-  "Hiragino Sans",
-  "Yu Gothic",
-  sans-serif;
-
-  color:#f4ecd8;
-
+  background:url("shop.png") center center/cover no-repeat;
   min-height:100vh;
+  font-family:sans-serif;
+  color:#f5f0e6;
 }
 
-.container{
-
-  max-width:800px;
-
-  margin:auto;
-
-  padding:
-  40px 20px 80px;
-
+.overlay{
+  min-height:100vh;
+  background:rgba(0,0,0,0.55);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
 }
 
 .panel{
-
-  background:rgba(0,0,0,.55);
-
-  backdrop-filter:blur(3px);
-
+  width:100%;
+  max-width:700px;
+  background:rgba(0,0,0,0.65);
   border-radius:20px;
-
   padding:30px;
-
-  box-shadow:
-  0 0 20px rgba(0,0,0,.4);
+  backdrop-filter:blur(4px);
 }
 
 h1{
-
   text-align:center;
-
-  margin-bottom:30px;
-
+  margin-bottom:25px;
   font-size:2rem;
-
-  font-weight:normal;
-
 }
 
 h2{
-
-  margin-top:35px;
-
+  margin-top:25px;
   margin-bottom:10px;
-
-  color:#ffd98a;
-
-  font-weight:normal;
+  color:#ffd27a;
 }
 
 p{
-
-  line-height:2;
-
-  margin-bottom:15px;
+  line-height:1.9;
+  margin-bottom:12px;
 }
 
-.center{
-
+.message{
   text-align:center;
+  margin-top:30px;
+  font-size:1.1rem;
 }
 
-.button{
-
+.back-btn{
   display:block;
-
   width:220px;
-
-  margin:40px auto 0;
-
-  padding:15px;
-
+  margin:30px auto 0;
+  padding:14px;
   text-align:center;
-
   text-decoration:none;
-
+  background:#d6b36a;
   color:#222;
-
-  background:#e0c07a;
-
-  border-radius:999px;
-
   font-weight:bold;
-
+  border-radius:999px;
   transition:.3s;
 }
 
-.button:hover{
-
+.back-btn:hover{
   transform:scale(1.05);
-}
-
-.footer{
-
-  margin-top:40px;
-
-  text-align:center;
-
-  line-height:2;
 }
 
 @media(max-width:600px){
 
   .panel{
-
     padding:20px;
   }
 
   h1{
-
     font-size:1.6rem;
   }
 
@@ -155,74 +97,52 @@ p{
 
 <body>
 
-<div class="container">
+<div class="overlay">
 
 <div class="panel">
 
 <h1>お気楽屋商店について</h1>
 
-<p class="center">
+<p>
 ようこそ、お気楽屋商店へ。
 </p>
 
 <p>
-ここは、少しだけ立ち止まるための小さなお店です。
+ここは、少しだけ休むための場所です。
 </p>
 
 <p>
-何かを学ぶ場所でも、
-競争する場所でもありません。
-</p>
-
-<p>
-ぼーっとしたり、
-雨音を聞いたり、
-夕方の景色を眺めたり。
-</p>
-
-<p>
-ただ静かに過ごすための場所です。
+何かを頑張る必要はありません。
+何かを達成する必要もありません。
+ただ、好きな部屋で、好きな時間を過ごしてください。
 </p>
 
 <h2>雨の部屋</h2>
-
 <p>
-窓の外では雨が降っています。
-雨音を聞きながら、
-のんびり過ごすための部屋です。
+雨音を聞きながら過ごす静かな部屋です。
 </p>
 
 <h2>深夜ラジオ</h2>
-
 <p>
-眠れない夜のための部屋です。
-小さな声と静かな時間が流れています。
+眠れない夜に寄り添う小さな部屋です。
 </p>
 
 <h2>ぼーっとする部屋</h2>
-
 <p>
-何もしないことを楽しむための部屋です。
-ただ座っているだけでも、
-十分な過ごし方です。
+何もしない時間を楽しむための部屋です。
 </p>
 
 <h2>商店街の夕方</h2>
-
 <p>
-西日が差し込む時間です。
-遠くから聞こえる商店街の音や、
-ゆっくり流れる夕方の空気をお楽しみください。
+西日の差し込む懐かしい夕方の風景です。
 </p>
 
 <h2>店内の様子</h2>
-
 <p>
-お気楽屋商店のいつもの風景です。
-静かな店内で自由にお過ごしください。
+お気楽屋商店の日常の風景です。
 </p>
 
-<div class="footer">
+<div class="message">
 
 <p>
 疲れたら休む。<br>
@@ -230,18 +150,13 @@ p{
 また来たくなったら来る。
 </p>
 
-<p>
-それだけです。
-</p>
-
-<p>
-今日もご来店ありがとうございます。<br>
+<p style="margin-top:15px;">
 ごゆっくりどうぞ。
 </p>
 
 </div>
 
-<a href="index.html" class="button">
+<a href="index.html" class="back-btn">
 戻る
 </a>
 
