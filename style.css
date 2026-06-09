@@ -315,7 +315,7 @@ body{
 
 .ctrl{
 
-  width:140px;
+  width:180px;
 
   padding:12px;
 
@@ -327,16 +327,9 @@ body{
 
   cursor:pointer;
 
-  background:
-  rgba(255,255,255,.02);
+  background:transparent;
 
-   border:1px solid rgba(255,255,255,.08);
-   
-  backdrop-filter:
-  blur(8px);
-
-  transition:
-  all .3s ease;
+  transition:all .3s ease;
 }
 
 .ctrl:hover{
