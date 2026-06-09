@@ -327,7 +327,9 @@ body{
 
   cursor:pointer;
 
-  background:transparent;
+  background:rgba(255,255,255,.08);
+
+  backdrop-filter:blur(3px);
 
   transition:all .3s ease;
 }
