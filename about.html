@@ -1,180 +1,263 @@
-# お気楽屋商店 取扱説明書
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-## 店主からのお知らせ
+<title>お気楽屋商店について</title>
 
-当店は、
+<style>
 
-頑張る人を応援するお店ではなく、
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-頑張りすぎた人が
-少し休むためのお店です。
+body{
 
----
+  background:
+  linear-gradient(
+    rgba(0,0,0,.55),
+    rgba(0,0,0,.55)
+  ),
+  url("shop.png");
 
-## ご利用方法
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
 
-① ふらっと来る
+  font-family:
+  "Hiragino Sans",
+  "Yu Gothic",
+  sans-serif;
 
-② なんとなく過ごす
+  color:#f4ecd8;
 
-③ ふらっと帰る
+  min-height:100vh;
+}
 
-以上です。
+.container{
 
-説明書はここで終わってもいいくらいです。
+  max-width:800px;
 
----
+  margin:auto;
 
-## 店内での過ごし方
+  padding:
+  40px 20px 80px;
 
-・ぼーっとする
+}
 
-・雨を眺める
+.panel{
 
-・深夜に来る
+  background:rgba(255,255,255,.25);
 
-・昼間に来る
+  backdrop-filter:blur(6px);
 
-・何もしない
+  border-radius:20px;
 
-・何かした気になる
+  padding:30px;
 
-どれも正しい利用方法です。
+  box-shadow:0 0 20px rgba(0,0,0,.3);
+}
 
----
+h1{
 
-## 注意事項
+  text-align:center;
 
-・焦りは入口に置いてお入りください。
+  margin-bottom:30px;
 
-・やる気は持ち込み可能です。
+  font-size:2rem;
 
-　ただし店内で迷子になる場合があります。
+  font-weight:normal;
 
-・悩み事は持ち込み可能です。
+}
 
-　帰る頃には少しだけ軽くなることがあります。
+h2{
 
-・人生の答えは販売しておりません。
+  margin-top:35px;
 
-　在庫切れです。
+  margin-bottom:10px;
 
----
+  color:#ffd98a;
 
-## よくあるお問い合わせ
+  font-weight:normal;
+}
 
-Q. 何かしなければいけませんか？
+p{
 
-A. 特にありません。
+  line-height:2;
 
----
+  margin-bottom:15px;
+}
 
-Q. 長居してもいいですか？
+.center{
 
-A. むしろそういうお店です。
+  text-align:center;
+}
 
----
+.button{
+  display:block;
+  width:220px;
+  margin:40px auto 0;
+  padding:15px;
 
-Q. 店主は何をしているのですか？
+  background:rgba(255,255,255,.18);
 
-A. たぶん奥でぼーっとしています。
+  color:white;
 
----
+  border:1px solid rgba(255,255,255,.35);
 
-Q. 元気になりますか？
+  border-radius:999px;
 
-A. なったり、ならなかったりです。
+  text-decoration:none;
 
-　天気みたいなものです。
+  text-align:center;
 
----
+  backdrop-filter:blur(4px);
 
-## 故障かな？と思ったら
+  transition:.3s;
+}
 
-【症状】
+.button:hover{
 
-時間を忘れる
+  transform:scale(1.05);
+}
 
-【回答】
+.footer{
 
-正常です。
+  margin-top:40px;
 
----
+  text-align:center;
 
-【症状】
+  line-height:2;
+}
 
-少し気持ちが楽になる
+@media(max-width:600px){
 
-【回答】
+  .panel{
 
-正常です。
+    padding:20px;
+  }
 
----
+  h1{
 
-【症状】
+    font-size:1.6rem;
+  }
 
-何もしていないのに満足感がある
+}
 
-【回答】
+</style>
+</head>
 
-かなり正常です。
+<body>
 
----
+<div class="container">
 
-【症状】
+<div class="panel">
 
-また来たくなる
+<h1>お気楽屋商店について</h1>
 
-【回答】
+<p class="center">
+ようこそ、お気楽屋商店へ。
+</p>
 
-店主が喜びます。
+<p>
+ここは、少しだけ立ち止まるための小さなお店です。
+</p>
 
----
+<p>
+何かを学ぶ場所でも、
+競争する場所でもありません。
+</p>
 
-## 保証内容
+<p>
+ぼーっとしたり、
+雨音を聞いたり、
+夕方の景色を眺めたり。
+</p>
 
-当店は、
+<p>
+ただ静かに過ごすための場所です。
+</p>
 
-成功・出世・億万長者・人生逆転を保証いたしません。
+<h2>雨の部屋</h2>
 
-ただし、
+<p>
+窓の外では雨が降っています。
+雨音を聞きながら、
+のんびり過ごすための部屋です。
+</p>
 
-「今日はまあいいか」
+<h2>深夜ラジオ</h2>
 
-と思える時間を提供できる場合があります。
+<p>
+眠れない夜のための部屋です。
+小さな声と静かな時間が流れています。
+</p>
 
----
+<h2>ぼーっとする部屋</h2>
 
-## 最後に
+<p>
+何もしないことを楽しむための部屋です。
+ただ座っているだけでも、
+十分な過ごし方です。
+</p>
 
-人生は、
+<h2>商店街の夕方</h2>
 
-たまに休憩所が必要です。
+<p>
+西日が差し込む時間です。
+遠くから聞こえる商店街の音や、
+ゆっくり流れる夕方の空気をお楽しみください。
+</p>
 
-お気楽屋商店は、
+<h2>店内の様子</h2>
 
-そんな時にふらっと立ち寄るための場所です。
+<p>
+お気楽屋商店のいつもの風景です。
+静かな店内で自由にお過ごしください。
+</p>
 
-何も持たずに来てください。
+<div class="footer">
 
-帰る時も、忘れ物くらいなら大丈夫です。
+<p>
+疲れたら休む。<br>
+飽きたら帰る。<br>
+また来たくなったら来る。
+</p>
 
-ただし、
+<p>
+それだけです。
+</p>
 
-焦りや疲れは置いていっていただいて構いません。
-
+<p>
+今日もご来店ありがとうございます。<br>
 ごゆっくりどうぞ。
+</p>
 
-　　　　　　　　　　　お気楽屋商店 店主
+<h2>店主へのお便り</h2>
 
-
-
-店主へのお便り
-
+<p>
 感想やご意見などありましたら、お気軽にお便りをお送りください。
+</p>
 
-
+<a href="https://forms.gle/mAHURNoMKpxB9XEGA"
+   class="button"
+   target="_blank"
+   rel="noopener noreferrer">
 📮 店主へのお便り
+</a>
 
+</div>
+
+<a href="index.html" class="button">
 戻る
+</a>
 
+</div>
+
+</div>
+
+</body>
+</html>
