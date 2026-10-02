@@ -176,6 +176,10 @@ rainBtn.onclick = ()=>{
 
 rainMode=!rainMode;
 
+rainBtn.setAttribute("aria-pressed", rainMode);
+rainBtn.textContent =
+rainMode ? "☔ 雨を止める" : "☔ 雨";
+
 const layer =
 document.getElementById(
 "weatherLayer"
@@ -186,6 +190,9 @@ layer.innerHTML="";
 if(rainMode){
 
 snowMode=false;
+
+snowBtn.setAttribute("aria-pressed", "false");
+snowBtn.textContent="❄ 雪";
 
 for(let i=0;i<180;i++){
 
@@ -221,6 +228,10 @@ snowBtn.onclick = ()=>{
 
 snowMode=!snowMode;
 
+snowBtn.setAttribute("aria-pressed", snowMode);
+snowBtn.textContent =
+snowMode ? "❄ 雪を止める" : "❄ 雪";
+
 const layer =
 document.getElementById(
 "weatherLayer"
@@ -231,6 +242,9 @@ layer.innerHTML="";
 if(snowMode){
 
 rainMode=false;
+
+rainBtn.setAttribute("aria-pressed", "false");
+rainBtn.textContent="☔ 雨";
 
 for(let i=0;i<100;i++){
 
@@ -324,6 +338,10 @@ let night=false;
 nightBtn.onclick=()=>{
 
 night=!night;
+
+nightBtn.setAttribute("aria-pressed", night);
+nightBtn.textContent =
+night ? "🌙 深夜をやめる" : "🌙 深夜";
 
 if(night){
 
