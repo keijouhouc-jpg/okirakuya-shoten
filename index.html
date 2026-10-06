@@ -8,10 +8,9 @@
   <style>
     body {
   margin: 0;
-  
-  background-image: url('shop.png');
-  background-size: cover;
-  background-position: center top;
+  position: relative;
+  min-height: 100svh;
+  background: #000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,6 +19,19 @@
 
   touch-action: manipulation;
   overflow: hidden;
+}
+
+  .top-image {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center top;
+
+  z-index: 0;
 }
 
   .box {
@@ -62,16 +74,23 @@
   background: rgba(255,255,255,0.3);
   transform: scale(1.03);
 }
-    @media (max-width: 768px) {
+  @media (min-width: 769px) {
+    body {
+      height: 100vh;
+    }
+  }
+
+  @media (max-width: 768px) {
   body {
-    height: auto;
-    min-height: 0;
+    height: 100svh;
   }
 }
   </style>
 </head>
 
 <body>
+
+  <img class="top-image" src="shop.png" alt="">
 
   <div class="box">
     <h1>お気楽屋商店</h1>
