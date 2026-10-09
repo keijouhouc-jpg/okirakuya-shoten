@@ -16,15 +16,19 @@
 }
 
 body{
+  width:100%;
+  min-height:100svh;
   background:#1b120c;
   display:flex;
   justify-content:center;
+  align-items:flex-start;
 }
 
 .wrapper{
   position:relative;
   width:100%;
   max-width:800px;
+  overflow:hidden;
 }
 
 .menu-image{
@@ -39,6 +43,7 @@ body{
   position:absolute;
   left:50%;
   transform:translateX(-50%);
+  display:block;
   width:78%;
   cursor:pointer;
   border-radius:20px;
@@ -79,6 +84,7 @@ body{
   position:absolute;
   left:50%;
   transform:translateX(-50%);
+  display:block;
   top:92%;
   width:35%;
   height:5%;
@@ -90,6 +96,20 @@ body{
   background:rgba(255,255,255,.08);
 }
 
+.room:focus-visible,
+.back:focus-visible{
+  outline:2px solid rgba(255,255,255,.9);
+  outline-offset:-4px;
+}
+
+/* スマホでは画像を画面幅に合わせ、余分なページ幅や黒帯を作らない。 */
+@media (max-width:800px){
+  .wrapper{
+    width:100vw;
+    max-width:none;
+  }
+}
+
 </style>
 </head>
 
@@ -97,25 +117,19 @@ body{
 
 <div class="wrapper">
 
-  <img src="menyu1.png" class="menu-image">
+  <img src="menyu1.png" class="menu-image" alt="今日はどこで過ごしますか。部屋を選ぶメニュー">
 
-  <div class="room rain"
-       onclick="location.href='rain.html'"></div>
+  <a class="room rain" href="rain.html" aria-label="雨の部屋へ"></a>
 
-  <div class="room radio"
-       onclick="location.href='radio.html'"></div>
+  <a class="room radio" href="radio.html" aria-label="深夜ラジオへ"></a>
 
-  <div class="room relax"
-       onclick="location.href='relax.html'"></div>
+  <a class="room relax" href="relax.html" aria-label="ぼーっとする部屋へ"></a>
 
-  <div class="room evening"
-       onclick="location.href='ultimate.html'"></div>
+  <a class="room evening" href="ultimate.html" aria-label="商店街の夕方へ"></a>
 
-  <div class="room shop"
-       onclick="location.href='shop.html'"></div>
+  <a class="room shop" href="shop.html" aria-label="店内の様子へ"></a>
 
-  <div class="back"
-       onclick="location.href='index.html'"></div>
+  <a class="back" href="index.html" aria-label="店を出る"></a>
 
 </div>
 
