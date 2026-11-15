@@ -3,138 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>深夜ラジオ</title>
-
 <style>
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  -webkit-tap-highlight-color: transparent;
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+body{height:100vh;min-height:100vh;min-height:100svh;background:#161616;display:flex;justify-content:center;align-items:center;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;overflow:hidden;isolation:isolate;}
+body::before,body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;}
+body::before{background:url("../okirakuya-shoten-main/雨窓の向こうのモノクロジャズバー.png") center center/cover no-repeat;filter:brightness(1.25);}
+body::after{background:linear-gradient(180deg,rgba(0,0,0,.34),rgba(0,0,0,.56));}
+.intro{position:absolute;z-index:1;top:clamp(9px,calc(6vh - 15px),49px);left:50%;width:min(88%,560px);transform:translateX(-50%);text-align:center;color:#fff1cf;text-shadow:0 2px 10px rgba(28,12,5,.9);pointer-events:none;}
+.intro h1{font-size:clamp(21px,4.75vw,34px);font-weight:500;letter-spacing:.18em;}
+.intro p{margin-top:6px;font-size:clamp(11px,3vw,14px);line-height:1.75;letter-spacing:.08em;}
+.controls{position:absolute;z-index:1;bottom:calc(2% + 1.5px);display:flex;flex-direction:column;gap:10px;align-items:center;width:36%;min-width:300px;max-width:420px;left:50%;transform:translateX(-50%);}
+.btn{width:173px;border:1px solid rgba(255,241,207,.24);border-radius:999px;min-height:39px;padding:7px 16px;font:14px "Yu Mincho","Hiragino Mincho ProN",serif;cursor:pointer;color:#fff;background:transparent;backdrop-filter:none;transition:.2s;}
+.btn:hover,.btn:active,.btn:focus-visible{background:transparent;}.btn:focus-visible{outline:2px solid rgba(255,241,207,.7);outline-offset:3px;}
+@media (max-width:700px),(hover:none) and (pointer:coarse){
+  .intro{top:33px;}.intro h1{font-size:26px;}.intro p{margin-top:3px;font-size:14px;}
+  .controls{bottom:calc(3% + 31.5px);}
+  .btn{font-size:16px;}
+  body::before{background-position:54% center;}
 }
-
-body{
-
-  height:100vh;
-
-  background:
-  url("radio.png")
-  center center/cover no-repeat;
-
-  display:flex;
-  justify-content:center;
-  align-items:center;
-
-  font-family:sans-serif;
-
-  overflow:hidden;
-}
-
-/* ボタンエリア */
-
-.controls{
-position:absolute;
-
-/* 下へ移動 */
-bottom:2%;
-
-display:flex;
-flex-direction:column;
-gap:16px;
-
-align-items:center;
-  
-/* 横幅を短く */
-width:36%;
-min-width:300px;
-max-width:420px;
-
-left:50%;
-transform:translateX(-50%);
-}
-
-.btn{
-
-width: 200px;
-
-border:none;
-border-radius:999px;
-
-/* 縦幅を少し短く */
-padding: 10px 18px;
-
-font-size:16px;
-
-cursor:pointer;
-
-color:white;
-
-background:rgba(255,255,255,.18);
-
-backdrop-filter:blur(6px);
-
-transition:.2s;
-}
-
-
-.btn:hover{
-  background:rgba(255,255,255,.28);
-}
-
 </style>
 </head>
-
 <body>
-
-<div class="controls">
-
-<button
-class="btn"
-onclick="playRadio()">
-📻 ラジオを流す
-</button>
-
-<button
-class="btn"
-onclick="stopRadio()">
-🔇 音を止める
-</button>
-
-<button
-class="btn"
-onclick="location.href='menu.html'">
- メニューへ戻る
-</button>
-
-</div>
-
-<audio id="radioSound" loop>
-<source src="radio.aac" type="audio/mpeg">
-</audio>
-
+<header class="intro"><h1>深夜ラジオ</h1><p>今夜も、ここでひと休み。<br>静かな時間を、あなたと。</p></header>
+<div class="controls" aria-label="ラジオ操作"><button class="btn" id="radioToggle" type="button" aria-pressed="false">📻 ラジオを流す</button><button class="btn" type="button" onclick="location.href='menu.html'">← 店内へ戻る</button></div>
+<audio id="radioSound" loop preload="metadata"><source src="voice_28244.aac" type="audio/aac"></audio>
 <script>
-
-const radio =
-document.getElementById("radioSound");
-
-function playRadio(){
-
-  radio.play().catch(error=>{
-    console.log(error);
-  });
-
-}
-
-function stopRadio(){
-
-  radio.pause();
-  radio.currentTime = 0;
-
-}
-
+const radio=document.getElementById("radioSound");const radioToggle=document.getElementById("radioToggle");
+function updateRadioToggle(){const isPlaying=!radio.paused;radioToggle.textContent=isPlaying?"🔇 音を止める":"📻 ラジオを流す";radioToggle.setAttribute("aria-pressed",String(isPlaying));}
+async function toggleRadio(){if(radio.paused){try{await radio.play();}catch(error){console.log(error);}}else{radio.pause();radio.currentTime=0;}updateRadioToggle();}
+radioToggle.addEventListener("click",toggleRadio);radio.addEventListener("play",updateRadioToggle);radio.addEventListener("pause",updateRadioToggle);
 </script>
-
 </body>
 </html>

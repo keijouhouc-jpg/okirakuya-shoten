@@ -1,137 +1,142 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="お気楽屋商店の店内統合試作。文字リンクのご案内を追加した確認用ページです。">
+  <title>お気楽屋商店 — 店内統合試作（文字リンク）</title>
+  <link rel="stylesheet" href="menu2.css">
+  <style>
+    /* 採用済みv7と同じ店内描画・クリック領域を使う。 */
+    @media (min-width: 701px) { .shop-scene { min-height: 100vh; } }
+    .shop-scene { isolation: isolate; background: #17100c var(--interior-image) center / cover no-repeat; }
+    .shop-scene::before, .shop-scene::after { content: none; }
+    .shop-scene nav { transform: none; }
+    .obj b { bottom: -11px; }
+    .chair b, .shelf b, .box b { bottom: 0; }
+    .door b { bottom: 94px; }
+    .tea { left: 10.75%; top: 58.7%; }
+    .tea b { bottom: -28px; left: 65px; }
+    .box b { left: 34px; }
+    .window-link { left: 3%; top: 6%; width: 22.5%; height: 47%; }
+    .door { left: 77%; top: 15%; width: 15.5%; height: 65%; }
+    .shelf--upper { left: 57%; top: 5%; width: 19%; height: 26.5%; }
+    .shelf--lower { left: 60%; top: 47.5%; width: 15%; height: 31.5%; }
+    @media (min-width: 701px) { .obj b { display: block; padding: 4px 7px; font-size: 11px; line-height: 1.25; opacity: 1; } }
 
-<title>お気楽屋商店 - 昭和メニュー</title>
+    /* 囲みをなくし、既存位置から一段下げた文字だけの案内リンク。 */
+    .utility-links {
+      position: fixed;
+      z-index: 12;
+      top: auto;
+      left: auto;
+      right: clamp(12px, 2vw, 28px);
+      bottom: clamp(7px, 1.4vw, 14px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      color: #fff1cf;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      font: 500 clamp(12px, 1.05vw, 14px)/1.2 "Yu Mincho", "Hiragino Mincho ProN", serif;
+      letter-spacing: .04em;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    .utility-links__item {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 2px 1px;
+      color: inherit;
+      border: 0;
+      background: transparent;
+      font: inherit;
+      letter-spacing: inherit;
+      text-decoration: none;
+      cursor: pointer;
+      pointer-events: auto;
+      text-shadow: 0 1px 4px rgba(20, 10, 5, .9);
+    }
+    .utility-links__separator { color: rgba(255, 227, 160, .7); user-select: none; text-shadow: 0 1px 4px rgba(20, 10, 5, .9); }
+    .utility-links__item:hover { color: #fff7de; text-decoration: underline; text-underline-offset: .25em; }
+    .utility-links__item:focus-visible { outline: 2px solid #ffe4a5; outline-offset: 3px; border-radius: 2px; }
 
-<style>
+    .info-dialog {
+      width: min(500px, calc(100vw - 28px));
+      max-height: min(72dvh, 610px);
+      padding: 0;
+      overflow: auto;
+      color: #3b210f;
+      background: #f5e6c4;
+      border: 1px solid #9d7042;
+      border-radius: 6px;
+      box-shadow: 0 12px 38px rgba(0, 0, 0, .55);
+      font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+    }
+    .info-dialog::backdrop { background: rgba(15, 8, 4, .62); }
+    .info-dialog__body { padding: clamp(18px, 4vw, 28px); }
+    .info-dialog h2 { margin: 0 0 1em; font-size: 1.25rem; font-weight: 600; }
+    .info-dialog p { margin: 0 0 1.15em; font-size: .94rem; line-height: 1.9; }
+    .info-dialog__signature { margin-bottom: 0; text-align: right; }
+    .info-dialog__close {
+      float: right;
+      min-height: 34px;
+      padding: 4px 8px;
+      color: #3b210f;
+      background: transparent;
+      border: 1px solid #9d7042;
+      border-radius: 3px;
+      font: inherit;
+      cursor: pointer;
+    }
+    .info-dialog__close:focus-visible { outline: 2px solid #6f401f; outline-offset: 2px; }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  -webkit-tap-highlight-color: transparent;
-}
-
-body{
-  width:100%;
-  min-height:100svh;
-  background:#1b120c;
-  display:flex;
-  justify-content:center;
-  align-items:flex-start;
-}
-
-.wrapper{
-  position:relative;
-  width:100%;
-  max-width:800px;
-  overflow:hidden;
-}
-
-.menu-image{
-  width:100%;
-  display:block;
-  height:auto;
-}
-
-/* クリックエリア */
-
-.room{
-  position:absolute;
-  left:50%;
-  transform:translateX(-50%);
-  display:block;
-  width:78%;
-  cursor:pointer;
-  border-radius:20px;
-}
-
-.room:hover{
-  background:rgba(255,255,255,.08);
-}
-
-/* 画像比率に合わせて配置 */
-
-.rain{
-  top:18%;
-  height:10%;
-}
-
-.radio{
-  top:33%;
-  height:10%;
-}
-
-.relax{
-  top:48%;
-  height:10%;
-}
-
-.evening{
-  top:63%;
-  height:10%;
-}
-
-.shop{
-  top:78%;
-  height:10%;
-}
-
-.back{
-  position:absolute;
-  left:50%;
-  transform:translateX(-50%);
-  display:block;
-  top:92%;
-  width:35%;
-  height:5%;
-  cursor:pointer;
-  border-radius:12px;
-}
-
-.back:hover{
-  background:rgba(255,255,255,.08);
-}
-
-.room:focus-visible,
-.back:focus-visible{
-  outline:2px solid rgba(255,255,255,.9);
-  outline-offset:-4px;
-}
-
-/* スマホでは画像を画面幅に合わせ、余分なページ幅や黒帯を作らない。 */
-@media (max-width:800px){
-  .wrapper{
-    width:100vw;
-    max-width:none;
-  }
-}
-
-</style>
+    @media (max-width: 760px) {
+      .window-link b, .radio b, .chair b, .shelf b, .door b { display: block; z-index: 4; padding: 4px 8px; font-size: 16.5px; line-height: 1.25; opacity: 1; pointer-events: none; }
+      /* Androidでは横スクロールバーの上に保ち、横方向の配置は既存試作と同じ。 */
+      .utility-links {
+        right: 10px;
+        bottom: calc(30px + env(safe-area-inset-bottom));
+        left: 10px;
+        gap: clamp(4px, 1.8vw, 7px);
+        font-size: clamp(11px, 3.35vw, 13px);
+      }
+      .utility-links__item { min-height: 38px; }
+      .info-dialog { max-height: 74dvh; }
+    }
+  </style>
 </head>
-
 <body>
-
-<div class="wrapper">
-
-  <img src="menyu1.png" class="menu-image" alt="今日はどこで過ごしますか。部屋を選ぶメニュー">
-
-  <a class="room rain" href="rain.html" aria-label="雨の部屋へ"></a>
-
-  <a class="room radio" href="radio.html" aria-label="深夜ラジオへ"></a>
-
-  <a class="room relax" href="relax.html" aria-label="ぼーっとする部屋へ"></a>
-
-  <a class="room evening" href="ultimate.html" aria-label="商店街の夕方へ"></a>
-
-  <a class="room shop" href="shop.html" aria-label="店内の様子へ"></a>
-
-  <a class="back" href="index.html" aria-label="店を出る"></a>
-
-</div>
-
+  <div class="scene-viewport" id="scene-viewport">
+    <main class="shop-scene">
+      <div class="mock window" aria-hidden="true"></div><div class="mock lamp" aria-hidden="true"></div>
+      <p id="hint">気になるものを、触ってみてください</p><output id="message" aria-live="polite"></output>
+      <nav aria-label="店内のもの">
+        <a class="obj window-link" href="rain.html" aria-label="雨の部屋へ"><i class="mock"></i><b>雨の部屋</b></a><a class="obj chair" href="relax.html" aria-label="ぼーっとする部屋へ"><i class="mock"></i><b>ぼーっとする部屋</b></a><a class="obj radio" href="radio.html" aria-label="深夜ラジオへ"><i class="mock"></i><b>深夜ラジオ</b></a><a class="obj shelf shelf--upper" href="shop.html" aria-label="店内の様子へ"><i class="mock"></i><b>店内の様子</b></a><a class="obj shelf shelf--lower" href="shop.html" aria-label="店内の様子へ"><i class="mock"></i></a><a class="obj door" href="index.html" aria-label="開運通りへ"><i class="mock"></i><b>開運通り</b></a>
+        <button class="obj tea" type="button" aria-label="湯呑みを見る"><i class="mock"></i><b>湯呑み</b></button><button class="obj box" type="button" aria-label="謎の箱を開ける"><i class="mock"></i><b>謎の箱</b></button><button class="obj elephant" type="button" aria-label="小さな象を見つけた">🐘<b>？</b></button>
+      </nav>
+    </main>
+  </div>
+  <nav class="utility-links" aria-label="ご案内">
+    <button class="utility-links__item" type="button" data-dialog="about-dialog">ご案内</button><span class="utility-links__separator" aria-hidden="true">｜</span><button class="utility-links__item" type="button" data-dialog="guide-dialog">ご利用ガイド</button><span class="utility-links__separator" aria-hidden="true">｜</span><a class="utility-links__item" href="https://forms.gle/mAHURNoMKpxB9XEGA" target="_blank" rel="noopener noreferrer" aria-label="店主へのお便りを新しいタブで開く">店主へのお便り</a>
+  </nav>
+  <dialog class="info-dialog" id="about-dialog" aria-labelledby="about-title">
+    <div class="info-dialog__body"><button class="info-dialog__close" type="button" data-close>閉じる</button><h2 id="about-title">お気楽屋商店のご案内</h2><p>いらっしゃいませ。</p><p>ここは、何かをするための場所ではありません。</p><p>雨の音を聞いたり、<br>深夜のラジオに耳を傾けたり、<br>ただ、ぼーっとしたり。</p><p>好きなところで、好きなだけ。</p><p>何もしなくても、かまいません。</p><p>お帰りの際も、ご挨拶はいりません。</p><p>また気が向いたら、<br>ふらっとお立ち寄りください。</p><p class="info-dialog__signature">お気楽屋商店 店主</p></div>
+  </dialog>
+  <dialog class="info-dialog" id="guide-dialog" aria-labelledby="guide-title">
+    <div class="info-dialog__body"><button class="info-dialog__close" type="button" data-close>閉じる</button><h2 id="guide-title">ご利用ガイド</h2><p>ようこそ、お気楽屋商店へ。</p><p>当店には、いくつかのお部屋がございます。</p><p>気になる場所を押して、どうぞお入りください。</p><p>雨の音を楽しんだり、<br>深夜のラジオを聞いたり、<br>何もせず、ぼーっとしたり。</p><p>音が出るお部屋では、お好みで音をお楽しみいただけます。</p><p>ほかのお部屋へ行きたくなったら、店内へお戻りください。</p><p>決まった順番も、時間制限もございません。</p><p>どうぞ、ごゆっくり。</p><p class="info-dialog__signature">お気楽屋商店 店主</p></div>
+  </dialog>
+  <div class="scene-scrollbar" aria-label="店内の横移動"><label class="sr-only" for="scene-scroll">店内を左右に移動</label><input id="scene-scroll" type="range" min="0" max="0" value="0" step="1"></div>
+  <script src="menu2.js"></script>
+  <script>
+    (() => {
+      document.querySelectorAll('[data-dialog]').forEach((trigger) => trigger.addEventListener('click', () => document.getElementById(trigger.dataset.dialog).showModal()));
+      document.querySelectorAll('[data-close]').forEach((button) => button.addEventListener('click', () => button.closest('dialog').close()));
+      document.querySelectorAll('.info-dialog').forEach((dialog) => dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); }));
+    })();
+  </script>
 </body>
 </html>
