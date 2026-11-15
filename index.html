@@ -1,158 +1,93 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>お気楽屋商店</title>
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>お気楽屋商店 2.0｜開運通り</title>
   <style>
-    body {
-  margin: 0;
-  position: relative;
-  min-height: 100svh;
-  background: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: sans-serif;
-  color: white;
-
-  touch-action: manipulation;
-  overflow: hidden;
-}
-
-  .top-image {
-  position: absolute;
-  inset: 0;
-
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-  object-position: center top;
-
-  z-index: 0;
-}
-
-  .box {
-  padding: 30px;
-  text-align: center;
-
-  width: 90%;
-  max-width: 320px;
-  margin: auto;
-
-  position: relative;
-  z-index: 10;
-}
-   button {
-  display: block;
-
-  width: 200px;
-
-  margin: 12px auto;
-
-  padding: 10px 18px;
-
-  border: none;
-  border-radius: 999px;
-
-  background: rgba(255,255,255,0.2);
-
-  color: white;
-
-  font-size: 16px;
-
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-
-  transition: all 0.3s ease;
-}
-
-  button:hover{
-  background: rgba(255,255,255,0.3);
-  transform: scale(1.03);
-}
-  @media (min-width: 769px) {
-    body {
-      height: 100vh;
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    html, body { width: 100%; min-width: 320px; min-height: 100%; margin: 0; background: #10131e; }
+    body { overflow: hidden; color: #fff7e7; font-family: "Yu Mincho", "Hiragino Mincho ProN", serif; }
+    #scene { position: relative; width: 100%; height: 100svh; overflow: hidden; --focus-x: .5; }
+    #scene::before { content: none; }
+    #background { position: absolute; z-index: 1; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: calc(var(--focus-x) * 100%) center; filter: brightness(.93) saturate(.92); }
+    #scene::after { position: absolute; z-index: 2; inset: 0; content: ""; pointer-events: none; background: linear-gradient(to bottom, rgba(4, 7, 24, .46), rgba(8, 9, 24, .12) 48%, rgba(6, 8, 16, .32)); }
+    #nightOverlay { position: absolute; z-index: 3; inset: 0; pointer-events: none; background: #070a18; opacity: 0; transition: opacity 1.2s ease; }
+    #scene.night #nightOverlay { opacity: .62; }
+    .layer { position: absolute; z-index: 4; inset: 0; overflow: hidden; pointer-events: none; }
+    #stars { z-index: 4; } #clouds { z-index: 5; } #fireflies { z-index: 6; } #birds { z-index: 7; } #weather { z-index: 8; }
+    .star { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: #fff9dc; box-shadow: 0 0 7px #fff5bc; animation: twinkle 3.8s ease-in-out infinite; }
+    .cloud { position: absolute; width: 250px; height: 70px; border-radius: 50px; background: rgba(234, 239, 255, .12); filter: blur(9px); animation: drift linear infinite; }
+    .firefly { position: absolute; width: 5px; height: 5px; border-radius: 50%; background: #ffeb77; box-shadow: 0 0 8px #ffeb77, 0 0 18px #ffeb77; animation: float 5s ease-in-out infinite; }
+    .crow { position: absolute; left: -50px; font-size: clamp(23px, 4vw, 34px); filter: drop-shadow(0 2px 3px #050507); transition: left 20s linear; }
+    .rain { position: absolute; width: 2px; height: 18px; background: #c9e8ff; opacity: .72; animation: rain 1s linear infinite; }
+    .snow { position: absolute; color: #fff; text-shadow: 0 0 5px #fff; animation: snow 9s linear infinite; }
+    #windowLight { position: absolute; z-index: 4; width: 210px; height: 180px; border-radius: 35%; pointer-events: none; background: rgba(255, 201, 88, .16); filter: blur(19px); mix-blend-mode: screen; animation: warm 120s ease-in-out infinite alternate; }
+    #streetLight { position: absolute; z-index: 5; width: 20px; height: 20px; border-radius: 50%; pointer-events: none; background: #ffe280; box-shadow: 0 0 9px #ffe280, 0 0 30px #ffcc68, 0 0 60px #ffb35b; animation: lamp 120s ease-in-out infinite alternate; }
+    #cat { position: absolute; z-index: 9; bottom: clamp(22px, 5vh, 58px); left: -12%; font-size: clamp(34px, 5vw, 54px); filter: drop-shadow(0 2px 4px #050505); animation: catwalk 40s linear infinite; }
+    #shopActions { position: absolute; z-index: 21; right: clamp(14px, 3vw, 34px); bottom: max(38px, calc(env(safe-area-inset-bottom) + 24px)); display: flex; flex-direction: column; align-items: stretch; gap: 8px; width: min(70px, calc(100vw - 28px)); }
+    #shopEntrance, #themeSongButton { height: 21px; min-height: 21px; padding: 0 2px; border: 1px solid rgba(255, 239, 194, .82); border-radius: 999px; color: #fff8e3; background: rgba(20, 14, 18, .72); font: inherit; font-size: 10px; line-height: 19px; white-space: nowrap; text-align: center; text-decoration: none; text-shadow: 0 1px 4px #050507; box-shadow: 0 2px 10px rgba(255, 174, 82, .24); cursor: pointer; transition: background .2s ease, transform .2s ease, box-shadow .2s ease; }
+    #shopEntrance:hover, #themeSongButton:hover, #themeSongButton[aria-pressed="true"] { background: rgba(92, 55, 25, .88); transform: translateY(-1px); }
+    #shopEntrance:focus-visible, #themeSongButton:focus-visible { outline: 3px solid rgba(255, 226, 154, .78); outline-offset: 3px; }
+    header { position: absolute; z-index: 20; top: max(18px, env(safe-area-inset-top)); left: 50%; width: min(94%, 680px); transform: translateX(-50%); text-align: center; text-shadow: 0 2px 9px #080811; pointer-events: none; }
+    h1 { margin: 0; font-family: "Yu Mincho", "Hiragino Mincho ProN", "YuMincho", serif; font-size: clamp(1.03275rem, 3.645vw, 1.88325rem); font-weight: 500; line-height: 1; letter-spacing: .12em; }
+    header p { margin: .4rem 0 0; font-size: clamp(.6885rem, 2.106vw, .891rem); transform: translateY(5px); }
+    #message { position: absolute; z-index: 20; left: clamp(14px, 3vw, 34px); bottom: max(13px, env(safe-area-inset-bottom)); max-width: min(58vw, 390px); margin: 0; font-size: clamp(.6642rem, 1.62vw, .81rem); line-height: 1.7; text-shadow: 0 2px 8px #090808; transition: opacity .45s ease; }
+    #themeSongButton[aria-pressed="true"] { border-color: #ffe29a; box-shadow: 0 0 0 3px rgba(255, 208, 105, .2), 0 2px 14px rgba(255, 174, 82, .45); }
+    @keyframes twinkle { 50% { opacity: .18; transform: scale(.65); } }
+    @keyframes drift { from { transform: translateX(-310px); } to { transform: translateX(calc(100vw + 310px)); } }
+    @keyframes float { 50% { transform: translateY(-25px); opacity: .4; } }
+    @keyframes warm { from { opacity: .1; } to { opacity: .58; } }
+    @keyframes lamp { from { opacity: .05; } to { opacity: .68; } }
+    @keyframes catwalk { from { left: -12%; } to { left: 110%; } }
+    @keyframes rain { to { transform: translateY(115vh); } }
+    @keyframes snow { to { transform: translateY(115vh) rotate(250deg); } }
+    @media (max-width: 680px) {
+      #scene { --focus-x: .5; background: #15100d; }
+      #scene::before { position: absolute; z-index: 0; inset: -24px; display: block; content: ""; background: url("shotengai-rain-night-mobile.png") center / cover no-repeat; filter: blur(16px) brightness(.44) saturate(.54) sepia(.20); transform: scale(1.04); }
+      #background { inset: 0; height: 100%; object-fit: cover; object-position: right center; filter: brightness(.89) saturate(.68) sepia(.20) contrast(1.04); }
+      #scene::after { background: linear-gradient(to bottom, rgba(25, 14, 9, .82), rgba(25, 14, 9, .74) 22%, rgba(20, 12, 9, .28) 44%, rgba(15, 9, 8, .08) 61%, rgba(18, 10, 7, .18) 75%, rgba(18, 10, 7, .78)); }
+      #nightOverlay { background: #0c0a0d; }
+      #windowLight { width: 150px; height: 140px; }
+      header { top: max(38px, calc(env(safe-area-inset-top) + 20px)); left: 50%; display: block; width: calc(70vw - 8px); transform: translateX(-50%); text-align: center; color: #fff1cf; }
+      header h1 { font-family: "Yu Mincho", "Hiragino Mincho ProN", "YuMincho", serif; font-size: clamp(1.6007625rem, 6.81615vw, 2.427rem); letter-spacing: .1em; text-shadow: 0 2px 4px #160b06, 0 0 13px rgba(216, 143, 64, .28); }
+      header p { margin-top: .38rem; color: #f2d79a; font-size: 12.96px; font-weight: 500; text-shadow: 0 2px 4px #160b06, 0 0 10px rgba(216, 143, 64, .22); transform: translateY(5px); }
+      #message { bottom: max(17px, env(safe-area-inset-bottom)); left: 50%; display: block; width: calc(100% - 32px); max-width: none; margin: 0; transform: translateX(-50%); color: transparent; font-size: 0; line-height: 1; text-align: center; text-shadow: none; opacity: 1 !important; transition: none; pointer-events: none; }
+      #message::before { display: inline-block; color: #fff1cf; font-size: clamp(.81rem, 3.321vw, 1.0368rem); line-height: 1.45; text-shadow: 0 2px 5px #160b06, 0 0 12px rgba(216, 143, 64, .24); content: "急がなくても大丈夫。"; }
+      #shopActions { right: 16px; bottom: max(52px, calc(env(safe-area-inset-bottom) + 36px)); width: min(93px, calc(100vw - 32px)); gap: 7px; }
+      #shopEntrance, #themeSongButton { height: 32px; min-height: 32px; padding: 0 2px; border-color: rgba(239, 186, 101, .98); background: rgba(49, 29, 14, .92); font-size: 13px; line-height: 30px; }
     }
-  }
-
-  @media (max-width: 768px) {
-  body {
-    height: 100svh;
-  }
-}
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
   </style>
 </head>
-
 <body>
-
-  <img class="top-image" src="shop.png" alt="">
-
-  <div class="box">
-    <h1>お気楽屋商店</h1>
-
-    <p>
-      今日は、何もしない。<br>
-    </p>
-
-<button onclick="playMusic('un02.aac')">
-  今月の曲
-</button>
-
-<button onclick="playMusic('te.mp3')">
-  テーマ曲
-</button>
-
-<button onclick="playMusic('end.mp3')">
-  エンディング曲
-</button>
-
-<br><br>
-
-<button onclick="stopMusic()">
-  音を止める
-</button>
-
-<button
-class="enter-btn"
-onclick="location.href='menu.html'">
-🏮 店に入る
-</button>
-
-  <button
-onclick="location.href='about.html'">
-お気楽屋商店について
-</button>
-    
-  </div>
-
- <audio id="bgm" ></audio>
-
- <script>
-
-const audio = document.getElementById('bgm');
-
-function playMusic(song) {
-
-  audio.src = song;
-  audio.load();
-  audio.play().catch(error => {
-  console.log(error);
-});
-
-}
-
-function stopMusic() {
-
-  audio.pause();
-
-}
-
-</script>
-
+  <main id="scene">
+    <picture><source media="(max-width: 680px)" srcset="shotengai-rain-night-mobile.png"><img id="background" src="shotengai-rain-night.webp" alt="雨夜の商店街とお気楽屋商店"></picture>
+    <div id="nightOverlay"></div><div class="layer" id="stars"></div><div class="layer" id="clouds"></div><div class="layer" id="fireflies"></div><div class="layer" id="birds"></div><div class="layer" id="weather"></div>
+    <div id="windowLight"></div><div id="streetLight"></div><div id="cat" aria-hidden="true">🐈‍⬛</div>
+    <div id="shopActions" aria-label="商店の操作"><a id="shopEntrance" href="menu.html" aria-label="店内の入口へ移動">店内へ</a><button id="themeSongButton" type="button" aria-pressed="false" aria-label="テーマ曲を再生">♪ テーマ曲</button></div>
+    <header><h1>お気楽屋商店</h1><p>本日ものんびり営業中</p></header>
+    <p id="message">遠くの街の音を、少しだけ眺めましょう。</p>
+  </main>
+  <audio id="themeSong" src="voice_28140.aac" preload="metadata"></audio>
+  <script>
+    const scene = document.getElementById('scene'); const image = document.getElementById('background'); const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const entrance = document.getElementById('shopEntrance'); const themeSongButton = document.getElementById('themeSongButton'); const themeSong = document.getElementById('themeSong'); const lights = { window: document.getElementById('windowLight'), street: document.getElementById('streetLight') };
+    const sources = { desktop: { width: 1672, height: 941, entrance: { left: 1240, top: 330, right: 1580, bottom: 830 }, window: { x: 1380, y: 460 }, street: { x: 804, y: 195 } }, mobile: { width: 870, height: 1808, entrance: { left: 650, top: 860, right: 866, bottom: 1360 }, window: { x: 790, y: 1120 }, street: { x: 505, y: 820 } } };
+    function placeOnImage(element, x, y, width = 0, height = 0) { const sceneBox = scene.getBoundingClientRect(); const box = image.getBoundingClientRect(); const mobile = innerWidth <= 680; const source = mobile ? sources.mobile : sources.desktop; const scale = Math.max(box.width / source.width, box.height / source.height); const offsetX = mobile ? box.width - source.width * scale : (box.width - source.width * scale) * .5; const offsetY = (box.height - source.height * scale) * .5; element.style.left = `${box.left - sceneBox.left + offsetX + x * scale}px`; element.style.top = `${box.top - sceneBox.top + offsetY + y * scale}px`; if (width) element.style.width = `${width * scale}px`; if (height) element.style.height = `${height * scale}px`; }
+    function placeHotspots() { const mobile = innerWidth <= 680; const source = mobile ? sources.mobile : sources.desktop; placeOnImage(lights.window, source.window.x, source.window.y); placeOnImage(lights.street, source.street.x, source.street.y); }
+    image.addEventListener('load', placeHotspots); addEventListener('resize', placeHotspots); placeHotspots();
+    if (!reduced) { for (let i = 0; i < 105; i++) { const star = document.createElement('i'); star.className = 'star'; star.style.left = `${Math.random() * 100}%`; star.style.top = `${Math.random() * 56}%`; star.style.animationDelay = `${Math.random() * 4}s`; document.getElementById('stars').append(star); } for (let i = 0; i < 5; i++) { const cloud = document.createElement('i'); cloud.className = 'cloud'; cloud.style.top = `${5 + i * 10}%`; cloud.style.animationDuration = `${70 + i * 20}s`; cloud.style.animationDelay = `${-i * 18}s`; document.getElementById('clouds').append(cloud); } for (let i = 0; i < 24; i++) { const firefly = document.createElement('i'); firefly.className = 'firefly'; firefly.style.left = `${Math.random() * 100}%`; firefly.style.bottom = `${5 + Math.random() * 22}%`; firefly.style.animationDelay = `${Math.random() * 5}s`; document.getElementById('fireflies').append(firefly); } }
+    const messages = ['遠くの街の音を、少しだけ眺めましょう。', '雨上がりの石畳に、灯りが揺れています。', '猫は今日も、ゆっくり帰り道を見ています。', '急がなくても大丈夫。', 'お気楽屋商店は今日ものんびり営業中です。']; const message = document.getElementById('message'); let messageIndex = 0;
+    if (!reduced) setInterval(() => { message.style.opacity = 0; setTimeout(() => { messageIndex = (messageIndex + 1) % messages.length; message.textContent = messages[messageIndex]; message.style.opacity = 1; }, 420); }, 15000);
+    function spawnCrow() { const crow = document.createElement('i'); crow.className = 'crow'; crow.textContent = '🐦‍⬛'; crow.style.top = `${8 + Math.random() * 30}%`; document.getElementById('birds').append(crow); requestAnimationFrame(() => { crow.style.left = '110%'; }); setTimeout(() => crow.remove(), 21000); }
+    if (!reduced) { spawnCrow(); setInterval(spawnCrow, 45000); }
+    function setThemeSongButton(playing) { themeSongButton.setAttribute('aria-pressed', String(playing)); themeSongButton.setAttribute('aria-label', playing ? 'テーマ曲を一時停止' : 'テーマ曲を再生'); themeSongButton.textContent = playing ? '❚❚ テーマ曲' : '♪ テーマ曲'; }
+    themeSongButton.addEventListener('click', async () => { if (themeSong.paused) { try { await themeSong.play(); setThemeSongButton(true); } catch { setThemeSongButton(false); } } else { themeSong.pause(); setThemeSongButton(false); } });
+    themeSong.addEventListener('play', () => setThemeSongButton(true));
+    themeSong.addEventListener('pause', () => { if (!themeSong.ended) setThemeSongButton(false); });
+    themeSong.addEventListener('ended', () => { themeSong.currentTime = 0; setThemeSongButton(false); });
+  </script>
 </body>
 </html>

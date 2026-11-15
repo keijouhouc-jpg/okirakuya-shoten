@@ -1,131 +1,108 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#2b1b12">
+  <title>ぼーっとする部屋 — 公開候補版</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { min-width: 320px; min-height: 100%; margin: 0; background: #2b1b12; }
+    body { min-height: 100svh; overflow: hidden; font-family: "Yu Mincho", "Hiragino Mincho ProN", serif; }
+    .room { position: relative; display: grid; width: 100vw; height: 100svh; place-items: center; background: #2b1b12; }
+    .panorama { width: 100%; height: 100%; }
+    .room-image { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; }
+    .controls { position: absolute; right: clamp(6px, 1vw, 16px); bottom: max(22px, calc(env(safe-area-inset-bottom) + 16px)); display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+    .btn { width: auto; min-height: 39px; padding: 8px 10px; border: 1px solid rgba(255, 241, 207, .78); border-radius: 999px; color: #fff7e8; background: transparent; font: inherit; font-size: 15px; line-height: 1.2; text-align: center; text-decoration: none; text-shadow: 0 1px 4px #160d09; white-space: nowrap; cursor: pointer; }
+    .return-btn { width: 126.25px; }
+    .btn:hover { color: #fff0c7; border-color: #fff0c7; }
+    .btn:focus-visible { outline: 3px solid #f5d99c; outline-offset: 3px; }
+    .scroll-control { display: none; }
 
-<style>
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-}
-
-body{
-  min-height:100vh;
-  height:100dvh;
-
-  background:url("relax.png")
-center center/cover no-repeat;
-  
-  font-family:sans-serif;
-
-  display:flex;
-  justify-content:center;
-  align-items:center;
-
-  overflow:hidden;
-}
-
-/* ボタンエリア */
-
-.controls{
-
-  position:absolute;
-
-  bottom:2%;
-
-  width:60%;
-  max-width:320px;
-
-  display:flex;
-  flex-direction:column;
-
-  gap:14px;
-}
-
-/* ボタン */
-
-.btn{
-
-  width:200px;
-
-  border:none;
-
-  border-radius:999px;
-
-  padding:10px 18px;
-
-  font-size:16px;
-
-  color:white;
-
-  cursor:pointer;
-
-  background:rgba(255,255,255,.06);
-
-  backdrop-filter:blur(6px);
-
-  transition:.2s;
-}
-
-.btn:hover{
-  background:rgba(255,255,255,.15);
-}
-</style>
+    @media (max-width: 767px) {
+      .room { display: block; height: 100dvh; overflow: hidden; }
+      .panorama { width: 100vw; height: 100dvh; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; -ms-overflow-style: none; touch-action: pan-x; }
+      .panorama::-webkit-scrollbar { display: none; }
+      .room-image { width: auto; height: 100%; aspect-ratio: 1672 / 941; object-fit: contain; object-position: left center; }
+      .controls { position: fixed; z-index: 2; right: auto; bottom: auto; align-items: flex-start; gap: 12px; }
+      .btn { min-height: 39px; padding: 8px 9px; font-size: 13px; font-weight: 700; }
+      .return-btn { width: 110.27px; }
+      .btn:hover { color: #fff7e8; border-color: rgba(255, 241, 207, .78); }
+      .btn:active { transform: scale(.98); }
+      .scroll-control { position: fixed; z-index: 10; right: 18px; bottom: calc(10px + env(safe-area-inset-bottom)); left: 18px; display: block; height: 18px; padding: 7px 0; touch-action: none; }
+      #scrollRange { display: block; width: 100%; height: 4px; margin: 0; appearance: none; border: 0; border-radius: 999px; background: rgba(255, 241, 207, .32); outline: none; cursor: ew-resize; }
+      #scrollRange::-webkit-slider-thumb { width: 18px; height: 18px; appearance: none; border: 1px solid rgba(255, 241, 207, .8); border-radius: 50%; background: rgba(112, 67, 34, .92); box-shadow: 0 1px 5px #170b05; }
+      #scrollRange::-moz-range-thumb { width: 16px; height: 16px; border: 1px solid rgba(255, 241, 207, .8); border-radius: 50%; background: rgba(112, 67, 34, .92); box-shadow: 0 1px 5px #170b05; }
+      #scrollRange:focus-visible::-webkit-slider-thumb { outline: 2px solid #ffe4a5; outline-offset: 3px; }
+    }
+  </style>
 </head>
-
 <body>
+  <main class="room" aria-label="昭和レトロのぼーっとする部屋">
+    <div class="panorama" id="panorama" aria-label="部屋を横にスクロール">
+      <img class="room-image" id="roomImage" src="relax-selected-pc-12345678-clean.png" alt="昭和レトロの畳の居間">
+    </div>
+    <div class="controls" aria-label="部屋の操作">
+      <button class="btn" type="button" id="play" aria-pressed="false">☁️ ぼーっとする</button>
+      <a class="btn return-btn" href="menu.html">店内へ戻る</a>
+    </div>
+    <label class="scroll-control" aria-label="店内を左右に移動"><input id="scrollRange" type="range" min="0" max="0" value="0" step="1"></label>
+  </main>
+  <audio id="relaxSound" loop preload="metadata"><source src="relax.aac" type="audio/aac"></audio>
+  <script>
+    const sound = document.getElementById('relaxSound');
+    const playButton = document.getElementById('play');
+    const panorama = document.getElementById('panorama');
+    const range = document.getElementById('scrollRange');
+    const image = document.getElementById('roomImage');
+    const controls = document.querySelector('.controls');
+    const mobile = matchMedia('(max-width: 767px)');
 
-<div class="controls">
+    const updatePlaybackState = () => playButton.setAttribute('aria-pressed', String(!sound.paused));
+    playButton.addEventListener('click', async () => {
+      if (sound.paused) {
+        try { await sound.play(); } catch (_) { updatePlaybackState(); }
+      } else {
+        sound.pause();
+        sound.currentTime = 0;
+      }
+    });
+    sound.addEventListener('play', updatePlaybackState);
+    sound.addEventListener('pause', updatePlaybackState);
 
-<button
-class="btn"
-onclick="playRelax()">
-☁️ ぼーっとする
-</button>
-
-<button
-class="btn"
-onclick="stopRelax()">
-🔇 音を止める
-</button>
-
-<button
-class="btn"
-onclick="location.href='menu.html'">
- メニューへ戻る
-</button>
-
-</div>
-
-<audio id="relaxSound" loop>
-<source src="relax.aac" type="audio/mpeg">
-</audio>
-
-<script>
-
-const relax =
-document.getElementById("relaxSound");
-
-function playRelax(){
-
-  relax.play().catch(error=>{
-    console.log(error);
-  });
-
-}
-
-function stopRelax(){
-
-  relax.pause();
-  relax.currentTime = 0;
-
-}
-
-</script>
-
+    let frame;
+    const sync = () => {
+      const max = Math.max(0, Math.round(panorama.scrollWidth - panorama.clientWidth));
+      range.max = max;
+      range.value = Math.min(max, Math.round(panorama.scrollLeft));
+      range.disabled = max === 0;
+    };
+    const placeControlsBelowTelephone = () => {
+      if (!mobile.matches || !image.naturalHeight) return;
+      const box = image.getBoundingClientRect();
+      const scale = box.height / image.naturalHeight;
+      const buttonStep = 44 + 12;
+      controls.style.left = `${Math.round(Math.max(12, box.left + 110 * scale))}px`;
+      controls.style.top = `${Math.round(box.top + 538 * scale + 18 + buttonStep + buttonStep)}px`;
+    };
+    const updateResponsiveLayout = () => {
+      if (mobile.matches) {
+        sync();
+        placeControlsBelowTelephone();
+      } else {
+        controls.style.left = '';
+        controls.style.top = '';
+        range.value = 0;
+        panorama.scrollLeft = 0;
+      }
+    };
+    panorama.addEventListener('scroll', () => { cancelAnimationFrame(frame); frame = requestAnimationFrame(sync); }, { passive: true });
+    range.addEventListener('input', () => { panorama.scrollLeft = Number(range.value); });
+    image.addEventListener('load', updateResponsiveLayout);
+    mobile.addEventListener('change', updateResponsiveLayout);
+    addEventListener('resize', updateResponsiveLayout, { passive: true });
+    updatePlaybackState();
+    updateResponsiveLayout();
+  </script>
 </body>
 </html>

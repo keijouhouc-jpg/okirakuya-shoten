@@ -1,0 +1,15 @@
+# Local trials and historical backups are not part of the production upload.
+**/*-prototype.html
+**/*-preview.html
+**/*-test*.html
+**/*integration-test*.html
+**/*.bak-before-link-update-*
+backup-before-vercel-publish-*/
+audio-drafts/
+bo-to-room-prototype.html
+bo-to-room-prototype.css
+menu-preview.html
+menu-preview.css
+menu-preview.js
+relax-preview.css
+relax-preview.js
