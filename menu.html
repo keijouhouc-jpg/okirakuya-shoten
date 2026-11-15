@@ -40,7 +40,7 @@
       background: transparent;
       border: 0;
       box-shadow: none;
-      font: 500 clamp(12px, 1.05vw, 14px)/1.2 "Yu Mincho", "Hiragino Mincho ProN", serif;
+      font: 500 16px/1.2 "Yu Mincho", "Hiragino Mincho ProN", serif;
       letter-spacing: .04em;
       white-space: nowrap;
       pointer-events: none;
@@ -102,10 +102,13 @@
         bottom: calc(30px + env(safe-area-inset-bottom));
         left: 10px;
         gap: clamp(4px, 1.8vw, 7px);
-        font-size: clamp(11px, 3.35vw, 13px);
+        font-size: 14px;
       }
       .utility-links__item { min-height: 38px; }
       .info-dialog { max-height: 74dvh; }
+    }
+    @media (max-width: 340px) {
+      .utility-links { font-size: 13px; }
     }
   </style>
 </head>
